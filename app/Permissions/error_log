@@ -1,0 +1,1 @@
+[25-Apr-2021 16:35:45 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/virtuald/public_html/app/Permissions/copy_HasPermissionsTrait.php on line 4
