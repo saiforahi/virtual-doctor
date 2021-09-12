@@ -3,14 +3,14 @@
 @section('title', 'Virtual Doctor')
 @push('css')
 <!-- Fontawesome CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fontawesome/css/fontawesome.min.css')}}">
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fontawesome/css/all.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fontawesome/css/fontawesome.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fontawesome/css/all.min.css')}}">
 
 <!-- Fancybox CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.css')}}">
 
 <!-- Main CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/css/style.css')}}">    
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/css/style.css')}}">    
 
 @endpush
 @section('content')
@@ -42,14 +42,14 @@
 				<div class="doctor-widget">
 					<div class="doc-info-left">
 						<div class="doctor-img">
-							<img src=" @if( is_null($doctor->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$doctor->image) }} @endif " class="img-fluid" alt="User Image">
+							<img src=" @if( is_null($doctor->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$doctor->image) }} @endif " class="img-fluid" alt="User Image">
 						</div>
 						<div class="doc-info-cont">
 							<h4 class="doc-name">{{ $doctor->name }}</h4>
 							<p class="doc-speciality">								
 								{{ doctor_degree_details($doctor->id) }}								
 							</p>
-							<p class="doc-department"><img src="{{ asset('public/assets/frontend/portal/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">
+							<p class="doc-department"><img src="{{ asset('assets/frontend/portal/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">
 								@foreach ($doctor->doctors as $data)
 									@if($data->department_id!="")
 										{{ getDeptNameById($data->department_id) }}									
@@ -71,23 +71,23 @@
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $doctor->address }}</p>
 								<ul class="clinic-gallery">
 									<li>
-										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery">
-											<img src="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature">
+										<a href="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery">
+											<img src="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature">
 										</a>
 									</li>
 									<li>
-										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery">
-											<img  src="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
+										<a href="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery">
+											<img  src="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
 										</a>
 									</li>
 									<li>
-										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery">
-											<img src="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature">
+										<a href="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery">
+											<img src="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature">
 										</a>
 									</li>
 									<li>
-										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery">
-											<img src="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature">
+										<a href="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery">
+											<img src="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature">
 										</a>
 									</li>
 								</ul>
@@ -352,23 +352,23 @@
 											<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2286  Sundown Lane, Austin, Texas 78749, USA <br><a href="javascript:void(0);">Get Directions</a></h5>
 											<ul>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 											</ul>
@@ -431,23 +431,23 @@
 											<p class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2883  University Street, Seattle, Texas Washington, 98155 <br><a href="javascript:void(0);">Get Directions</a></p>
 											<ul>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 												<li>
-													<a href="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
-														<img src="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature Image">
+													<a href="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
+														<img src="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature Image">
 													</a>
 												</li>
 											</ul>
@@ -504,7 +504,7 @@
 								<!-- Comment List -->
 								<li>
 									<div class="comment">
-										<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ asset('public/assets/frontend/portal/img/patients/patient.jpg')}}">
+										<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ asset('assets/frontend/portal/img/patients/patient.jpg')}}">
 										<div class="comment-body">
 											<div class="meta-data">
 												<span class="comment-author">Richard Wilson</span>
@@ -545,7 +545,7 @@
 									<ul class="comments-reply">
 										<li>
 											<div class="comment">
-												<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ asset('public/assets/frontend/portal/img/patients/patient1.jpg')}}">
+												<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ asset('assets/frontend/portal/img/patients/patient1.jpg')}}">
 												<div class="comment-body">
 													<div class="meta-data">
 														<span class="comment-author">Charlene Reed</span>
@@ -590,7 +590,7 @@
 								<!-- Comment List -->
 								<li>
 									<div class="comment">
-										<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ asset('public/assets/frontend/portal/img/patients/patient2.jpg')}}">
+										<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{ asset('assets/frontend/portal/img/patients/patient2.jpg')}}">
 										<div class="comment-body">
 											<div class="meta-data">
 												<span class="comment-author">Travis Trimble</span>
@@ -782,8 +782,8 @@
 @endsection
 @push('js')
 <!-- Fancybox JS -->
-<script src="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
+<script src="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('public/assets/frontend/portal/js/script.js')}}"></script>
+<script src="{{ asset('assets/frontend/portal/js/script.js')}}"></script>
 @endpush

@@ -27,8 +27,7 @@
                             {{--
                             {{ asset('public/storage/profile/' . $post->user->image) }} --}}
                             <a href="{{ route('doctor-profile',$data->user_id) }}">
-                                <img class="img-fluid" alt="User Image"
-                                    src=" @if( is_null($data->users->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$data->users->image) }} @endif ">
+                                <img class="img-fluid" alt="User Image" src=" @if( is_null($data->users->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$data->users->image) }} @endif ">
                             </a>
                             <a href="javascript:void(0)" class="fav-btn">
                                 <i class="far fa-bookmark"></i>
@@ -36,7 +35,7 @@
                         </div>
                         <div class="pro-content">
                             <h3 class="title">
-                                <!--<a href="{{ route('doctor-profile',$data->user_id) }}">{{ $data->users->name }}</a>-->
+                                <a href="{{ route('doctor-profile',$data->user_id) }}">{{ $data->users->name }}</a>
                                 <i class="fas fa-check-circle verified"></i>
                             </h3>
                             {{--<p class="speciality">{{ doctor_degree_details($data->user_id) }} - {{ getDeptNameById($data->department_id) }}</p>--}}

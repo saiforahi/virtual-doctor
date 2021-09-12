@@ -49,6 +49,9 @@ Route::get('/logout', function () {
     Session::flush();
     return redirect('/');
 });
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::get('/patient-logout', function(){
     Session::flush();
@@ -68,7 +71,7 @@ Route::get('/patient-login', [\App\Http\Controllers\HomeController::class,'patie
 Route::get('checkout/{id?}/{schedule_id?}', [\App\Http\Controllers\HomeController::class,'checkout'])->name('checkout');
 Route::get('search-doctor/{kw?}/{loc?}', [\App\Http\Controllers\HomeController::class,'searchDoctor'])->name('search-doctor');
 Route::get('doctor-profile/{id?}', [\App\Http\Controllers\HomeController::class,'doctorProfile'])->name('doctor-profile');
-Route::get('book-appoinment/{id?}', [\App\Http\Controllers\HomeController::class,'bookAppointment'])->name('book-appoinment');
+Route::get('book-appoinment/{id?}', [\App\Http\Controllers\HomeController::class,'bookAppoinment'])->name('book-appoinment');
 Route::get('new-patient-register', [\App\Http\Controllers\RegisterController::class,'new_patient_register'])->name('new-patient-register');
 
 Route::post('new_patient_registration', [\App\Http\Controllers\RegisterController::class,'new_patient_store'])->name('new_patient_registration');
@@ -79,23 +82,23 @@ Route::get('booking-success', [\App\Http\Controllers\HomeController::class,'book
 
 Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], function() { 
     Route::get('dashboard', [\App\http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
-    Route::resource('users', 'UserController');    
-    Route::resource('appointments', 'AppointmentController');  
-    Route::get('reschedule_appointment/{id}', 'AppointmentController@reschedule_appointment')->name('reschedule_appointment');
-    Route::post('reschedule_store', 'AppointmentController@rescheduleStore')->name('reschedule_store');
+    Route::resource('users', \App\http\Controllers\Admin\UserController::class);    
+    Route::resource('appointments', \App\http\Controllers\Admin\AppointmentController::class);  
+    Route::get('reschedule_appointment/{id}',[\App\http\Controllers\Admin\AppointmentController::class,'reschedule_appointment'])->name('reschedule_appointment');
+    Route::post('reschedule_store',[\App\http\Controllers\Admin\AppointmentController::class,'rescheduleStore'])->name('reschedule_store');
     // if logged in portal
-    Route::post('store-appointment', 'AppointmentController@AppointmentStore')->name('store-appointment');
+    Route::post('store-appointment',[\App\http\Controllers\Admin\AppointmentController::class,'AppointmentStore'])->name('store-appointment');
  
-    Route::get('set_appointment/{id}', 'AppointmentController@set_appointment')->name('set_appointment'); 
-    Route::get('prescription_edit/{id}', 'AppointmentController@prescription_edit')->name('prescription_edit');
-    Route::post('prescription_update/{id}', 'AppointmentController@prescription_update')->name('prescription_update');
-    Route::post('approve_user/{id}', 'UserController@approve_user')->name('approve_user');
-    Route::post('pending_user/{id}', 'UserController@pending_user')->name('pending_user');
-    Route::put('doctor-degree-update','UserController@updateDegree')->name('doctor-degree-update');
-    Route::put('doctor-schedule','SettingsController@doctorSchedule')->name('doctor-schedule');
-    Route::put('doctor-schedule-update','UserController@doctorSchedule')->name('doctor-schedule-update');
-    Route::get('settings/delete_schedule/{scdid}', 'SettingsController@deleteSchedule')->name('delete_schedule');
-    Route::get('users/{id}/edit/delete_scheduled/{scdid}', 'UserController@deleteSchedule')->name('delete_scheduled');
+    Route::get('set_appointment/{id}',[\App\http\Controllers\AppointmentController::class,'reschedule_appointment'])->name('set_appointment'); 
+    Route::get('prescription_edit/{id}', [\App\http\Controllers\AppointmentController::class,'prescription_edit'])->name('prescription_edit');
+    Route::post('prescription_update/{id}',[\App\http\Controllers\AppointmentController::class,'prescription_update'])->name('prescription_update');
+    Route::post('approve_user/{id}', [\App\http\Controllers\UserController::class,'approve_user'])->name('approve_user');
+    Route::post('pending_user/{id}', [\App\http\Controllers\Admin\UserController::class,'pending_user'])->name('pending_user');
+    Route::put('doctor-degree-update',[\App\http\Controllers\Admin\UserController::class,'updateDegree'])->name('doctor-degree-update');
+    Route::put('doctor-schedule',[\App\http\Controllers\Admin\SettingsController::class,'doctorSchedule'])->name('doctor-schedule');
+    Route::put('doctor-schedule-update',[\App\http\Controllers\Admin\UserController::class,'doctorSchedule'])->name('doctor-schedule-update');
+    Route::get('settings/delete_schedule/{scdid}', [\App\http\Controllers\Admin\SettingsController::class,'deleteSchedule'])->name('delete_schedule');
+    Route::get('users/{id}/edit/delete_scheduled/{scdid}', [\App\http\Controllers\Admin\UserController::class,'deleteSchedule'])->name('delete_scheduled');
     
     Route::put('doctor-personalinfo-update','UserController@doctorPersonalInfoUpdate')->name('doctor-personalinfo-update');
 

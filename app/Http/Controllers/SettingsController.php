@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Doctor;
-use App\Department;
-use App\DoctorSchedule;
-use App\Day;
+use App\Models\User;
+use App\Models\Doctor;
+use App\Models\Department;
+use App\Models\DoctorSchedule;
+use App\Models\Day;
 use Hash;
 
 class SettingsController extends Controller

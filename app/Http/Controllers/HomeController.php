@@ -23,7 +23,6 @@ class HomeController extends Controller
         // $clinic = Clinic::all();
         $features = Features::latest()->get();
         $departments = Department::latest()->get();
-        //dd($departments);
         $doctor = Doctor::with('users')->whereHas('users', function ($q) {$q->where('is_deleted', '=', '0');})->get();
         //dd($doctor);
         return view('welcome', compact('doctor', 'features', 'departments'));
@@ -40,7 +39,6 @@ class HomeController extends Controller
         $gender = $request->input('gender');
         // dd($gender);
         $counter = 0;
-
         if ($keyword != "" && $location == "") {
             $doctor = Doctor::join('departments', 'doctors.department_id', '=', 'departments.id')
                 ->join('users', 'doctors.user_id', '=', 'users.id')
@@ -59,7 +57,7 @@ class HomeController extends Controller
                 ->where('is_active', '=', 1)
                 ->paginate(5);
         } elseif (!empty($gender) && !empty($speciality) && $location != "" && $keyword == "") {
-            // dd("3rd");
+            //dd("3rd");
             $doctor = Doctor::join('departments', 'doctors.department_id', '=', 'departments.id')
                 ->join('users', 'doctors.user_id', '=', 'users.id')
                 ->WhereIn("departments.name", $speciality)
@@ -69,7 +67,7 @@ class HomeController extends Controller
                 ->where('users.is_active', '=', 1)
                 ->paginate(5);
         } elseif (empty($gender) && !empty($speciality) && $location != "" && $keyword == "") {
-            // dd("3rd");
+            //dd("4th");
             $doctor = Doctor::join('departments', 'doctors.department_id', '=', 'departments.id')
                 ->join('users', 'doctors.user_id', '=', 'users.id')
                 ->WhereIn("departments.name", $speciality)
@@ -82,7 +80,7 @@ class HomeController extends Controller
                 ->join('users', 'doctors.user_id', '=', 'users.id')
                 ->WhereIn("departments.name", $speciality)
                 ->WhereIn("users.gender", $gender)
-                ->where("users.address", "LIKE", "%$location%")
+                //->where("users.address", "LIKE", "%$location%")
                 ->where('users.is_deleted', '=', 0)
                 ->where('users.is_active', '=', 1)
                 ->paginate(5);

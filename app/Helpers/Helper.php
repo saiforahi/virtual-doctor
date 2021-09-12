@@ -270,8 +270,8 @@ function doctor_degree($id)
 
 function doctor_degree_details($id)
 {
-    $educational_degrees = Doctor::where('user_id', $id)->first()->educational_degrees;
-    if ($educational_degrees != null) {
+    if (Doctor::where('user_id', $id)->first()->educational_degrees != null) {
+        $educational_degrees = Doctor::where('user_id', $id)->first()->educational_degrees;
         $single_degree = explode('|', $educational_degrees);
         foreach ($single_degree as $single_value) {
             $singlevalue = explode(',', $single_value);

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Day;
+use App\Models\Day;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use DateTime;

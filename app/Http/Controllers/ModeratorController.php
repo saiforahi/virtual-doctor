@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Moderator;
+use App\Models\Moderator;
 use Illuminate\Http\Request;
 
 class ModeratorController extends Controller

@@ -60,18 +60,18 @@
         <div class="navbar-header text-center">
             <!-- <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a> -->
             <a href="javascript:void(0);" class="bars"></a>
-            <img src="{{asset('public/VD.gif')}}" href="" style="height: 45px; width: 85px;margin: 0;">           
+            <img src="{{asset('VD.gif')}}" href="" style="height: 45px; width: 85px;margin: 0;">           
         </div>
         <div class="user-role-info float-right" onclick="showUserRole();">
             <i class="material-icons">
                 verified_user
             </i>
             <span id="role-span">
-                @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+                @if(auth()->check() && auth()->user()->hasRole('admin'))
                 ADMIN DASHBOARD
-                @elseif(auth()->check() && auth()->user()->hasRole('admin'))
+                @elseif(auth()->check() && auth()->user()->hasRole('moderator'))
                 MODERATOR DASHBOARD
-                @elseif(auth()->check() && auth()->user()->hasRole('power-user'))
+                @elseif(auth()->check() && auth()->user()->hasRole('doctor'))
                 DOCTOR DASHBOARD
                 @else
                 PATIENT DASHBOARD

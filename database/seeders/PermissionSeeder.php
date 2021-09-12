@@ -49,7 +49,7 @@ class PermissionSeeder extends Seeder
         // create demo users
         $user = \App\Models\User::factory()->create([
             'name' => 'Mr Admin',
-            'email' => 'awronno.adhar@gmail.com',
+            'email' => 'olsadev@gmail.com',
             'phone'=> '01XXXXXXXXX',
             'age' => '30',
             'is_active' => 1,
@@ -66,12 +66,15 @@ class PermissionSeeder extends Seeder
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Mr Moderator',
-            'email' => 'cse.hasan6@mail.com',
+            'email' => 'cse.hasan6@gmail.com',
             'phone'=> '01XXXXXXXXY',
             'age' => '30',
             'is_active' => 1,
             'password' => Hash::make('123456'),
             'gender' => 'Male',
+        ]);
+        \App\Models\Moderator::create([
+            'user_id'=>$user->id,
         ]);
         $user->assignRole($role2);
         $user = \App\Models\User::factory()->create([
@@ -79,12 +82,16 @@ class PermissionSeeder extends Seeder
             'email' => 'hafij.sabuj@gmail.com',
             'phone'=> '01737552551',
             'age' => '30',
+            'image'=>'Mabia Mishu-2021-02-24-60362015aa588.jpg',
             'is_active' => 1,
             'password' => Hash::make('123456'),
             'gender' => 'Male',
         ]);
+        \App\Models\Doctor::create([
+            'user_id'=>$user->id,
+            'department_id' => \App\Models\Department::where('name','Pathology')->first()->id
+        ]);
         $user->assignRole($role3);
-
         $user = \App\Models\User::factory()->create([
             'name' => 'Shaif Azad',
             'email' => 'saiforahi@gmail.com',
@@ -93,6 +100,9 @@ class PermissionSeeder extends Seeder
             'is_active' => 1,
             'password' => Hash::make('123456'),
             'gender' => 'Male',
+        ]);
+        \App\Models\Patient::create([
+            'user_id'=>$user->id
         ]);
         $user->assignRole($role4);
     }

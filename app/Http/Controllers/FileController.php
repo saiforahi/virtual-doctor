@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\File;
+use App\Models\File;
 use Illuminate\Support\Facades\Storage;
 use Mail;
 use Brian2694\Toastr\Facades\Toastr;

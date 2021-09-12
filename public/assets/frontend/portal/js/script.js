@@ -187,7 +187,7 @@ Version      : 1.3
 		$('.specialities-slider').slick({
 			dots: true,
 			autoplay:false,
-			infinite: true,
+			infinite: false,
 			variableWidth: true,
 			prevArrow: false,
 			nextArrow: false
@@ -198,14 +198,14 @@ Version      : 1.3
 		$('.doctor-slider').slick({
 			dots: false,
 			autoplay:false,
-			infinite: true,
+			infinite: false,
 			variableWidth: true,
 		});
 	}
 	if($('.features-slider').length > 0) {
 		$('.features-slider').slick({
 			dots: true,
-			infinite: true,
+			infinite: false,
 			centerMode: true,
 			slidesToShow: 3,
 			speed: 500,

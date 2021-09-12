@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
-use App\File;
-use App\Slot;
-use App\Appointment;
+use App\Models\User;
+use App\Models\File;
+use App\Models\Slot;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Str;

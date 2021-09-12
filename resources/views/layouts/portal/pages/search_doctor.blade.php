@@ -12,13 +12,13 @@
     @push('css')
 
         <!-- Datetimepicker CSS -->
-        <link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/portal/css/bootstrap-datetimepicker.min.css') }}">
 
         <!-- Select2 CSS -->
-        <link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/select2/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/select2/css/select2.min.css') }}">
 
         <!-- Fancybox CSS -->
-        <link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.css') }}">
     @endpush
 @section('content')
     <!-- Breadcrumb -->
@@ -121,7 +121,7 @@
                                         <div class="doc-info-left">
                                             <div class="doctor-img">
                                                 <a href="{{ route('doctor-profile', $data->user_id) }}">
-                                                    <img src=" @if( is_null($data->users->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$data->users->image) }} @endif "
+                                                    <img src=" @if( is_null($data->users->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$data->users->image) }} @endif "
                                                         class="img-fluid" alt="User Image">
                                                 </a>
                                             </div>
@@ -131,7 +131,7 @@
                                                 </h4>
                                                 <p class="doc-speciality">{{ doctor_degree_details($data->user_id) }}</p>
                                                 <h5 class="doc-department"><img
-                                                        src="{{ asset('public/assets/frontend/portal/img/specialities/specialities-05.png') }}"
+                                                        src="{{ asset('assets/frontend/portal/img/specialities/specialities-05.png') }}"
                                                         class="img-fluid"
                                                         alt="Speciality">{{ getDeptNameById($data->department_id) }}</h5>
                                                 <div class="rating">
@@ -148,30 +148,30 @@
                                                     </p>
                                                     <ul class="clinic-gallery">
                                                         <li>
-                                                            <a href="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg') }}"
+                                                            <a href="{{ asset('assets/frontend/portal/img/features/feature-01.jpg') }}"
                                                                 data-fancybox="gallery">
-                                                                <img src="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg') }}"
+                                                                <img src="{{ asset('assets/frontend/portal/img/features/feature-01.jpg') }}"
                                                                     alt="Feature">
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg') }}"
+                                                            <a href="{{ asset('assets/frontend/portal/img/features/feature-02.jpg') }}"
                                                                 data-fancybox="gallery">
-                                                                <img src="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg') }}"
+                                                                <img src="{{ asset('assets/frontend/portal/img/features/feature-02.jpg') }}"
                                                                     alt="Feature">
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg') }}"
+                                                            <a href="{{ asset('assets/frontend/portal/img/features/feature-03.jpg') }}"
                                                                 data-fancybox="gallery">
-                                                                <img src="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg') }}"
+                                                                <img src="{{ asset('assets/frontend/portal/img/features/feature-03.jpg') }}"
                                                                     alt="Feature">
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg') }}"
+                                                            <a href="{{ asset('assets/frontend/portal/img/features/feature-04.jpg') }}"
                                                                 data-fancybox="gallery">
-                                                                <img src="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg') }}"
+                                                                <img src="{{ asset('assets/frontend/portal/img/features/feature-04.jpg') }}"
                                                                     alt="Feature">
                                                             </a>
                                                         </li>
@@ -228,20 +228,20 @@
 @endsection
 @push('js')
     <!-- Sticky Sidebar JS -->
-    <script src="{{ asset('public/assets/frontend/portal/plugins/theia-sticky-sidebar/ResizeSensor.js') }}"></script>
-    <script src="{{ asset('public/assets/frontend/portal/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}">
+    <script src="{{ asset('assets/frontend/portal/plugins/theia-sticky-sidebar/ResizeSensor.js') }}"></script>
+    <script src="{{ asset('assets/frontend/portal/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}">
     </script>
 
     <!-- Select2 JS -->
-    <script src="{{ asset('public/assets/frontend/portal/plugins/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/portal/plugins/select2/js/select2.min.js') }}"></script>
 
     <!-- Datetimepicker JS -->
-    <script src="{{ asset('public/assets/frontend/portal/js/moment.min.js') }}"></script>
-    <script src="{{ asset('public/assets/frontend/portal/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/portal/js/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/portal/js/bootstrap-datetimepicker.min.js') }}"></script>
 
     <!-- Fancybox JS -->
-    <script src="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js') }}"></script>
 
     <!-- Custom JS -->
-    <script src="{{ asset('public/assets/frontend/portal/js/script.js') }}"></script>
+    <script src="{{ asset('assets/frontend/portal/js/script.js') }}"></script>
 @endpush

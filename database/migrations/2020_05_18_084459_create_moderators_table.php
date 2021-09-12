@@ -19,7 +19,7 @@ class CreateModeratorsTable extends Migration
             $table->unsignedBigInteger('user_id');
             // $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->boolean('isActive');
+            $table->boolean('isActive')->nullable();
             $table->timestamps();
         });
     }

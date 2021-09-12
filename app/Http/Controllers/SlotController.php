@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Slot;
+use App\Models\Slot;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use DateTime;

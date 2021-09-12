@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 Use Auth;
-use App\User;
-use App\Role;
-use App\Message;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use App\Models\Message;
 use Brian2694\Toastr\Facades\Toastr;
 
 class MessageController extends Controller

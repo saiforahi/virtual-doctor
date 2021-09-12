@@ -3,14 +3,14 @@
 @section('title', 'Virtual Doctor')
 @push('css')
 <!-- Fontawesome CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fontawesome/css/fontawesome.min.css')}}">
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fontawesome/css/all.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fontawesome/css/fontawesome.min.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fontawesome/css/all.min.css')}}">
 
 <!-- Daterangepikcer CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/daterangepicker/daterangepicker.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/daterangepicker/daterangepicker.css')}}">
 
 <!-- Main CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/css/style.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/css/style.css')}}">
 
 @endpush
 @section('content')
@@ -43,7 +43,7 @@
 					<div class="card-body">
 						<div class="booking-doc-info">
 							<a href="{{route('doctor-profile', $doctor->id)}}" class="booking-doc-img">
-								<img src="@if( is_null($doctor->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$doctor->image) }} @endif"
+								<img src="@if( is_null($doctor->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$doctor->image) }} @endif"
 									alt="User Image">
 							</a>
 							<input type="hidden" id="drid" value="{{  $doctor->id }}">
@@ -399,11 +399,11 @@
 <!-- /Page Content -->
 @endsection
 @push('js')
-<script src="{{ asset('public/assets/frontend/portal/js/moment.min.js')}}"></script>
-<script src="{{ asset('public/assets/frontend/portal/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="{{ asset('assets/frontend/portal/js/moment.min.js')}}"></script>
+<script src="{{ asset('assets/frontend/portal/plugins/daterangepicker/daterangepicker.js')}}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('public/assets/frontend/portal/js/script.js')}}"></script>
+<script src="{{ asset('assets/frontend/portal/js/script.js')}}"></script>
 <script>
 	$( document ).ready(function() {
 

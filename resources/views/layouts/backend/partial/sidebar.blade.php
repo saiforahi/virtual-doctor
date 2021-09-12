@@ -2,8 +2,7 @@
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
-            <img src=" @if( is_null(Auth::user()->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.Auth::user()->image) }} @endif "
-                width="48" height="48" alt="User" />
+            <img src="@if(is_null(Auth::user()->image)) {{ url('storage/profile/no_profile.png') }} @else{{ url('storage/profile/'.Auth::user()->image)}}@endif" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}
@@ -14,8 +13,7 @@
                     aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
                     <li>
-                        <a href="">
-                            <i class="material-icons">settings</i>Settings</a>
+                        <a href=""><i class="material-icons">settings</i>Settings</a>
                     </li>
                     @if(!auth()->user()->api_token)
                     <li role="separator" class="divider"></li>
@@ -24,7 +22,6 @@
                                                      document.getElementById('logout-form').submit();">
                             <i class="material-icons">input</i>Sign Out
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
@@ -159,7 +156,7 @@
     <!-- Footer -->
     <div class="legal">
         <div class="copyright">
-            &copy; 2020 <a href="https://dma-bd.com">Datasoft Manufacturing & Assembly Inc. Ltd.</a>.
+            &copy; 2021 <a href="https://dma-bd.com">Datasoft Manufacturing & Assembly Inc. Ltd.</a>.
             <p>Beta Version1.7.2-b</p>
         </div>
     </div>

@@ -39,7 +39,7 @@ class DashboardController extends Controller
         $total_approval = 0;
         $my_file = 0;
         //dd(User::role('doctor')->where('id',Auth::user()->id)->exists());
-        if (Auth::user()->hasRole(Role::where('name','moderator')->first()->id)){
+        if (Auth::user()->hasRole(Role::where('name','moderator')->first()->id) || Auth::user()->hasRole(Role::where('name','admin')->first()->id)){
             //dd('found');
             $approval_users = User::latest()->where('is_active', 0)->where('is_deleted', 0)->get();
             $total_approval = $approval_users->count();
