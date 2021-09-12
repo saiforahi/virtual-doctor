@@ -27,7 +27,7 @@
 									@csrf
 									<input type="hidden" name="portal_login" value="patient">
                                     <div class="form-group form-focus">
-                                        <input type="text" name="username" class="form-control floating">
+                                        <input type="text" name="email" class="form-control floating">
                                         <label class="focus-label">Email or Phone</label>
                                     </div>
                                     <div class="form-group form-focus">

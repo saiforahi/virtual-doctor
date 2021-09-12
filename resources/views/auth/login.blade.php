@@ -97,9 +97,8 @@
 
                     <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
                         <span class="label-input100">{{ __('Phone or Email') }}</span>
-                        <input id="username" type="text" class="input100{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="phone or email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="text" class="input100{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="phone or email" value="{{ old('email') }}" required autofocus>
                         <span class="focus-input100" data-symbol="&#9993;"></span>
-                        
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">

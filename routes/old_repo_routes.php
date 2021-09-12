@@ -77,8 +77,8 @@ Route::post('registration', [\App\Http\Controllers\RegisterController::class,'st
 Route::get('booking-success', [\App\Http\Controllers\HomeController::class,'bookingSuccess'])->name('booking-success');
 
 
-Route::group(['middleware' =>  ['role:admin']], function() { 
-    Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
+Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], function() { 
+    Route::get('dashboard', [\App\http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
     Route::resource('users', 'UserController');    
     Route::resource('appointments', 'AppointmentController');  
     Route::get('reschedule_appointment/{id}', 'AppointmentController@reschedule_appointment')->name('reschedule_appointment');

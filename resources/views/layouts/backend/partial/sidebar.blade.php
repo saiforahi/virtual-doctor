@@ -41,7 +41,7 @@
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
 
-            @role('user')
+            @role('patient')
             <li class="">
                 <a href="{{route('home')}}" target="_blank">
                     <i class="material-icons">public</i>
@@ -64,8 +64,8 @@
                 </a>
             </li>
             @endif
-
-            @role('user')
+            @endrole
+            @role('patient')
 
             <li class="header">System</li>
             <li class="{{Request::is('settings') ? 'active' : ''}}">

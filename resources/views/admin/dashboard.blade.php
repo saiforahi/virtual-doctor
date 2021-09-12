@@ -1,9 +1,9 @@
 @extends('layouts.backend.app')
-@if(auth()->check() && auth()->user()->hasRole('super-admin'))
+@if(auth()->check() && auth()->user()->hasRole('admin'))
 @section('title',"ADMIN DASHBOARD")
-@elseif(auth()->check() && auth()->user()->hasRole('admin'))
+@elseif(auth()->check() && auth()->user()->hasRole('moderator'))
 @section('title',"MODERATOR DASHBOARD")
-@elseif(auth()->check() && auth()->user()->hasRole('power-user'))
+@elseif(auth()->check() && auth()->user()->hasRole('doctor'))
 @section('title',"DOCTOR DASHBOARD")
 @else
 @section('title',"PATIENT DASHBOARD")
@@ -33,7 +33,7 @@
 <div class="container-fluid">
 
     <!-- Widgets -->
-    @if(auth()->user()->hasRole('super-admin') )
+    @if(auth()->user()->hasRole('admin') )
     <div class="row clearfix">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" id="superadmin_moderator">
             <a href="#" style="text-decoration: none;">
@@ -93,7 +93,7 @@
     </div>
     @endif
 
-    @if(auth()->user()->hasRole('admin'))
+    @if(auth()->user()->hasRole('moderator'))
     <div class="row clearfix">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" id="moderator_patient">
             <a href="#" style="text-decoration: none;">
@@ -154,7 +154,7 @@
     </div>
     @endif
 
-    @if(auth()->user()->hasRole('power-user') )
+    @if(auth()->user()->hasRole('doctor') )
     <div class="row clearfix">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6" id="doctor_patient">
             <a href="#" style="text-decoration: none;">
@@ -219,7 +219,7 @@
     <!-- Widgets End -->
 
 
-    @if(auth()->check() && auth()->user()->hasRole('admin'))
+    @if(auth()->check() && auth()->user()->hasRole('moderator'))
     <!-- MODERATOR Tab -->
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -566,7 +566,7 @@
     <!-- #END# MODERATOR Tab -->
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('power-user'))
+    @if(auth()->check() && auth()->user()->hasRole('doctor'))
 
     <!-- DOCTOR Tab -->
     <div class="row">
@@ -772,7 +772,7 @@
 
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('user'))
+    @if(auth()->check() && auth()->user()->hasRole('patient'))
 
     <!-- PATIENT Tab -->
     <div class="row">
@@ -1003,7 +1003,7 @@
     @endif
 
 
-    @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+    @if(auth()->check() && auth()->user()->hasRole('admin'))
     <!-- Approval Requests -->
     @if($total_approval>0)
     <div class="row clearfix">
