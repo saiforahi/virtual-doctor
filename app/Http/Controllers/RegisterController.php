@@ -15,6 +15,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Mail;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -194,10 +195,10 @@ class RegisterController extends Controller
             'gender' => 'required',
             'age' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => ['required','string','min:8','confirmed',Password::min(8)->numbers()],
         ]);
 
-        $moderators = User::role('admin')->get();
+        $moderators = User::role('moderator')->get();
         set_time_limit(0);
         ini_set('max_execution_time', 180); //3 minutes 
 

@@ -3,14 +3,14 @@
 @section('title', 'Virtual Doctor')
 @push('css')
 <!-- Fontawesome CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fontawesome/css/fontawesome.min.css') }}">
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fontawesome/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fontawesome/css/fontawesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fontawesome/css/all.min.css') }}">
 
 <!-- Fancybox CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.css') }}">
 
 <!-- Main CSS -->
-<link rel="stylesheet" href="{{ asset('public/assets/frontend/portal/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/frontend/portal/css/style.css') }}">
 
 @endpush
 @section('content')
@@ -40,7 +40,7 @@
             <div class="col-md-7 col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        @if(auth()->check() && auth()->user()->hasRole('user'))
+                        @if(auth()->check() && auth()->user()->hasRole('patient'))
                         <!-- Checkout Form -->
                         <form id="form" method="POST" action="{{ url('pay') }}">
                             @csrf
@@ -315,7 +315,7 @@
                         <!-- Booking Doctor Info -->
                         <div class="booking-doc-info">
                             <a href="doctor-profile.html" class="booking-doc-img">
-                                <img src="@if( is_null($doctor->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$doctor->image) }} @endif"
+                                <img src="@if( is_null($doctor->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$doctor->image) }} @endif"
                                     alt="User Image">
                             </a>
                             <div class="booking-info">
@@ -381,10 +381,10 @@
 @endsection
 @push('js')
 <!-- Fancybox JS -->
-<script src="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js') }}"></script>
+<script src="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js') }}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('public/assets/frontend/portal/js/script.js') }}"></script>
+<script src="{{ asset('assets/frontend/portal/js/script.js') }}"></script>
 
 <script>
     $( document ).ready(function() {  

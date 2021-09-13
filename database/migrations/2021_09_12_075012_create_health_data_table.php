@@ -15,7 +15,8 @@ class CreateHealthDataTable extends Migration
     {
         Schema::create('health_data', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->constrained('patients');
+            $table->foreignId('patient_id')->constrained('patients')->nullable();
+            $table->foreignId('moderator_id')->constrained('moderators')->nullable();
             $table->string('temp')->nullable();
             $table->string('bp_sys')->nullable();
             $table->string('bp_dia')->nullable();

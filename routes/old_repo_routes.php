@@ -82,23 +82,23 @@ Route::get('booking-success', [\App\Http\Controllers\HomeController::class,'book
 
 Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], function() { 
     Route::get('dashboard', [\App\http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
-    Route::resource('users', \App\http\Controllers\Admin\UserController::class);    
-    Route::resource('appointments', \App\http\Controllers\Admin\AppointmentController::class);  
-    Route::get('reschedule_appointment/{id}',[\App\http\Controllers\Admin\AppointmentController::class,'reschedule_appointment'])->name('reschedule_appointment');
-    Route::post('reschedule_store',[\App\http\Controllers\Admin\AppointmentController::class,'rescheduleStore'])->name('reschedule_store');
+    Route::resource('users', \App\http\Controllers\UserController::class);    
+    Route::resource('appointments', \App\http\Controllers\AppointmentController::class);  
+    Route::get('reschedule_appointment/{id}',[\App\http\Controllers\AppointmentController::class,'reschedule_appointment'])->name('reschedule_appointment');
+    Route::post('reschedule_store',[\App\http\Controllers\AppointmentController::class,'rescheduleStore'])->name('reschedule_store');
     // if logged in portal
-    Route::post('store-appointment',[\App\http\Controllers\Admin\AppointmentController::class,'AppointmentStore'])->name('store-appointment');
+    Route::post('store-appointment',[\App\http\Controllers\AppointmentController::class,'AppointmentStore'])->name('store-appointment');
  
     Route::get('set_appointment/{id}',[\App\http\Controllers\AppointmentController::class,'reschedule_appointment'])->name('set_appointment'); 
     Route::get('prescription_edit/{id}', [\App\http\Controllers\AppointmentController::class,'prescription_edit'])->name('prescription_edit');
     Route::post('prescription_update/{id}',[\App\http\Controllers\AppointmentController::class,'prescription_update'])->name('prescription_update');
     Route::post('approve_user/{id}', [\App\http\Controllers\UserController::class,'approve_user'])->name('approve_user');
-    Route::post('pending_user/{id}', [\App\http\Controllers\Admin\UserController::class,'pending_user'])->name('pending_user');
-    Route::put('doctor-degree-update',[\App\http\Controllers\Admin\UserController::class,'updateDegree'])->name('doctor-degree-update');
-    Route::put('doctor-schedule',[\App\http\Controllers\Admin\SettingsController::class,'doctorSchedule'])->name('doctor-schedule');
-    Route::put('doctor-schedule-update',[\App\http\Controllers\Admin\UserController::class,'doctorSchedule'])->name('doctor-schedule-update');
-    Route::get('settings/delete_schedule/{scdid}', [\App\http\Controllers\Admin\SettingsController::class,'deleteSchedule'])->name('delete_schedule');
-    Route::get('users/{id}/edit/delete_scheduled/{scdid}', [\App\http\Controllers\Admin\UserController::class,'deleteSchedule'])->name('delete_scheduled');
+    Route::post('pending_user/{id}', [\App\http\Controllers\UserController::class,'pending_user'])->name('pending_user');
+    Route::put('doctor-degree-update',[\App\http\Controllers\UserController::class,'updateDegree'])->name('doctor-degree-update');
+    Route::put('doctor-schedule',[\App\http\Controllers\SettingsController::class,'doctorSchedule'])->name('doctor-schedule');
+    Route::put('doctor-schedule-update',[\App\http\Controllers\UserController::class,'doctorSchedule'])->name('doctor-schedule-update');
+    Route::get('settings/delete_schedule/{scdid}', [\App\http\Controllers\SettingsController::class,'deleteSchedule'])->name('delete_schedule');
+    Route::get('users/{id}/edit/delete_scheduled/{scdid}', [\App\http\Controllers\UserController::class,'deleteSchedule'])->name('delete_scheduled');
     
     Route::put('doctor-personalinfo-update','UserController@doctorPersonalInfoUpdate')->name('doctor-personalinfo-update');
 
@@ -149,17 +149,17 @@ Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], functio
 
 });
 // SSLCOMMERZ Start
-Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout');
-Route::get('/example2', 'SslCommerzPaymentController@exampleHostedCheckout');
+Route::get('/example1', [\App\http\Controllers\SslCommerzPaymentController::class,'exampleEasyCheckout']);
+Route::get('/example2', [\App\http\Controllers\SslCommerzPaymentController::class,'exampleHostedCheckout']);
 
-Route::post('/pay', 'SslCommerzPaymentController@index')->name('pay');
-Route::post('/pay1', 'SslCommerzPaymentController@index1')->name('pay1');
-Route::post('/pay-via-ajax', 'SslCommerzPaymentController@payViaAjax');
+Route::post('/pay', [\App\http\Controllers\SslCommerzPaymentController::class,'index'])->name('pay');
+Route::post('/pay1', [\App\http\Controllers\SslCommerzPaymentController::class,'index1'])->name('pay1');
+Route::post('/pay-via-ajax', [\App\http\Controllers\SslCommerzPaymentController::class,'payViaAjax']);
 
-Route::post('/success', 'SslCommerzPaymentController@success');
-Route::post('/fail', 'SslCommerzPaymentController@fail');
-Route::post('/cancel', 'SslCommerzPaymentController@cancel');
+Route::post('/success', [\App\http\Controllers\SslCommerzPaymentController::class,'success']);
+Route::post('/fail', [\App\http\Controllers\SslCommerzPaymentController::class,'fail']);
+Route::post('/cancel', [\App\http\Controllers\SslCommerzPaymentController::class,'cancel']);
 
-Route::post('/ipn', 'SslCommerzPaymentController@ipn');
+Route::post('/ipn', [\App\http\Controllers\SslCommerzPaymentController::class,'ipn']);
 //SSLCOMMERZ END
 // Auth::routes();

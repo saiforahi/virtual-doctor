@@ -165,31 +165,18 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_d'] = "ref004";
 
         #Before  going to initiate the payment order status need to insert or update as Pending.
-        $update_product = DB::table('orders')
-            ->where('transaction_id', $post_data['tran_id'])
-            ->updateOrInsert([
-                'name' => $post_data['cus_name'],
-                'email' => $post_data['cus_email'],
-                'phone' => $post_data['cus_phone'],
-                'amount' => $post_data['total_amount'],
-                'status' => 'Pending',
-                'address' => $post_data['cus_add1'],
-                'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
-            ]);
-    // dd([
-    //             'name' => $post_data['cus_name'],
-    //             'email' => $post_data['cus_email'],
-    //             'phone' => $post_data['cus_phone'],
-    //             'amount' => $post_data['total_amount'],
-    //             'status' => 'Pending',
-    //             'address' => $post_data['cus_add1'],
-    //             'transaction_id' => $post_data['tran_id'],
-    //             'currency' => $post_data['currency']
-                
-    //     ]);
+        $update_product = DB::table('orders')->where('transaction_id', $post_data['tran_id'])->updateOrInsert([
+            'name' => $post_data['cus_name'],
+            'email' => $post_data['cus_email'],
+            'phone' => $post_data['cus_phone'],
+            'amount' => $post_data['total_amount'],
+            'status' => 'Pending',
+            'address' => $post_data['cus_add1'],
+            'transaction_id' => $post_data['tran_id'],
+            'currency' => $post_data['currency']
+        ]);
 
-          $patient = User::create([
+        $patient = User::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'gender' => $request->gender,
@@ -314,7 +301,7 @@ class SslCommerzPaymentController extends Controller
     public function success(Request $request)
     {
         // echo "Transaction is Successful";
-
+        dd($request->all());
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
@@ -322,9 +309,7 @@ class SslCommerzPaymentController extends Controller
         $sslc = new SslCommerzNotification();
 
         #Check order status in order tabel against the transaction id or order id.
-        $order_detials = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+        $order_detials = DB::table('orders')->where('transaction_id', $tran_id)->select('transaction_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
             $validation = $sslc->orderValidate($tran_id, $amount, $currency, $request->all());
