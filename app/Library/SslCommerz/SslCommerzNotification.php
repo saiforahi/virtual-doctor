@@ -28,9 +28,7 @@ class SslCommerzNotification extends AbstractSslCommerz
             $this->error = "Please provide valid transaction ID and post request data";
             return $this->error;
         }
-
         $validation = $this->validate($trx_id, $amount, $currency, $post_data);
-
         if ($validation) {
             return true;
         } else {
@@ -48,14 +46,11 @@ class SslCommerzNotification extends AbstractSslCommerz
             # CALL THE FUNCTION TO CHECK THE RESULT
             $post_data['store_id'] = $this->getStoreId();
             $post_data['store_pass'] = $this->getStorePassword();
-
             if ($this->SSLCOMMERZ_hash_varify($this->getStorePassword(), $post_data)) {
-
                 $val_id = urlencode($post_data['val_id']);
                 $store_id = urlencode($this->getStoreId());
                 $store_passwd = urlencode($this->getStorePassword());
                 $requested_url = ($this->config['apiDomain'] . $this->config['apiUrl']['order_validate'] . "?val_id=" . $val_id . "&store_id=" . $store_id . "&store_passwd=" . $store_passwd . "&v=1&format=json");
-
                 $handle = curl_init();
                 curl_setopt($handle, CURLOPT_URL, $requested_url);
                 curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);

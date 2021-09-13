@@ -75,8 +75,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_d'] = "ref004";
 
         #Before  going to initiate the payment order status need to insert or update as Pending.
-        $update_product = DB::table('orders')
-            ->where('transaction_id', $post_data['tran_id'])
+        $update_product = DB::table('orders')->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
@@ -93,7 +92,7 @@ class SslCommerzPaymentController extends Controller
         $vital_signs = 'Temperature:  F,Pulse:  bpm, Blood Pressure: mmHg, Oxygen Rate:  %,Weight: ';
 
         $data = Appointment::create([
-            'patient_id' => Auth()->user()->id,
+            'patient_id' => Auth::user()->id,
             'doctor_id' => $request->doctor_id,
             'room_id' => $uniqid,
             'patient_type' => 'New',
@@ -274,9 +273,7 @@ class SslCommerzPaymentController extends Controller
 
 
         #Before  going to initiate the payment order status need to update as Pending.
-        $update_product = DB::table('orders')
-            ->where('transaction_id', $post_data['tran_id'])
-            ->updateOrInsert([
+        $update_product = DB::table('orders')->where('transaction_id', $post_data['tran_id'])->updateOrInsert([
                 'name' => $post_data['cus_name'],
                 'email' => $post_data['cus_email'],
                 'phone' => $post_data['cus_phone'],

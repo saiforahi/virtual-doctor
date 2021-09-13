@@ -53,7 +53,7 @@
                 </a>
             </li>            
             
-            @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+            @if(auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('users') ? 'active' : ''}}">
                 <a href="{{route('users.index')}}">
                     <i class="material-icons">person_add</i>
@@ -71,6 +71,14 @@
                     <span>Settings</span>
                 </a>
             </li>
+            @if(auth()->check() && auth()->user()->hasRole('moderator'))
+            <li class="{{Request::is('slot') ? 'active' : ''}}">
+                <a href="{{route('slot.index')}}">
+                    <i class="material-icons">date_range</i>
+                    <span>Create Time Schedule</span>
+                </a>
+            </li>
+            @endif
             @if(auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('slot') ? 'active' : ''}}">
                 <a href="{{route('slot.index')}}">
@@ -79,11 +87,11 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('super-admin'))
-            <li class="{{Request::is('slot') ? 'active' : ''}}">
-                <a href="{{route('slot.index')}}">
-                    <i class="material-icons">date_range</i>
-                    <span>Create Time Schedule</span>
+            @if(auth()->check() && auth()->user()->hasRole('moderator'))
+            <li class="{{Request::is('clinic') ? 'active' : ''}}">
+                <a href="{{route('clinic.index')}}">
+                    <i class="material-icons">person_add</i>
+                    <span>Clinic Info</span>
                 </a>
             </li>
             @endif
@@ -95,11 +103,11 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('super-admin'))
-            <li class="{{Request::is('clinic') ? 'active' : ''}}">
-                <a href="{{route('clinic.index')}}">
+            @if(auth()->check() && auth()->user()->hasRole('moderator'))
+            <li class="{{Request::is('department') ? 'active' : ''}}">
+                <a href="{{route('department.index')}}">
                     <i class="material-icons">person_add</i>
-                    <span>Clinic Info</span>
+                    <span>Department Info</span>
                 </a>
             </li>
             @endif
@@ -111,15 +119,7 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('super-admin'))
-            <li class="{{Request::is('department') ? 'active' : ''}}">
-                <a href="{{route('department.index')}}">
-                    <i class="material-icons">person_add</i>
-                    <span>Department Info</span>
-                </a>
-            </li>
-            @endif
-            @if(auth()->check() && auth()->user()->hasRole('admin'))
+            @if(auth()->check() && auth()->user()->hasRole('moderator'))
             <li class="{{Request::is('features') ? 'active' : ''}}">
                 <a href="{{route('features.index')}}">
                     <i class="material-icons">person_add</i>
@@ -127,7 +127,7 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+            @if(auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('features') ? 'active' : ''}}">
                 <a href="{{route('features.index')}}">
                     <i class="material-icons">person_add</i>
