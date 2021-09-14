@@ -195,7 +195,7 @@ class RegisterController extends Controller
             'gender' => 'required',
             'age' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required','string','min:8','confirmed',Password::min(8)->numbers()],
+            'password' => ['required','string','min:8','confirmed',Password::min(8)->numbers()->letters()],
         ]);
 
         $moderators = User::role('moderator')->get();
