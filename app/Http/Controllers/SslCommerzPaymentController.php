@@ -31,7 +31,7 @@ class SslCommerzPaymentController extends Controller
 
     public function index(Request $request)
     {
-        // dd($request->all());
+        //dd($request->all());
         # Here you have to receive all the order data to initate the payment.
         # Let's say, your oder transaction informations are saving in a table called "orders"
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
@@ -103,7 +103,7 @@ class SslCommerzPaymentController extends Controller
             'isApproved' => 0,
         ]);
         // End create appointment 
-
+        //dd($data);
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
         $payment_options = $sslc->makePayment($post_data, 'hosted');
@@ -211,7 +211,6 @@ class SslCommerzPaymentController extends Controller
         // Toastr::success('Request Completed Successfully :)', 'success');
         
         Auth::loginUsingId($patient->id, TRUE);
-           
         $sslc = new SslCommerzNotification();
         //dd($sslc);
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -298,7 +297,6 @@ class SslCommerzPaymentController extends Controller
     public function success(Request $request)
     {
         // echo "Transaction is Successful";
-        dd($request->all());
         $tran_id = $request->input('tran_id');
         $amount = $request->input('amount');
         $currency = $request->input('currency');
@@ -317,9 +315,7 @@ class SslCommerzPaymentController extends Controller
                 in order table as Processing or Complete.
                 Here you can also sent sms or email for successfull transaction to customer
                 */
-                $update_product = DB::table('orders')
-                    ->where('transaction_id', $tran_id)
-                    ->update(['status' => 'Processing']);
+                $update_product = DB::table('orders')->where('transaction_id', $tran_id)->update(['status' => 'Processing']);
 
                 // echo "<br >Transaction is successfully Completed";
                     return view('layouts.portal.pages.booking-success');
@@ -356,9 +352,7 @@ class SslCommerzPaymentController extends Controller
             ->select('transaction_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
-            $update_product = DB::table('orders')
-                ->where('transaction_id', $tran_id)
-                ->update(['status' => 'Failed']);
+            $update_product = DB::table('orders')->where('transaction_id', $tran_id)->update(['status' => 'Failed']);
             echo "Transaction is Falied";
         } else if ($order_detials->status == 'Processing' || $order_detials->status == 'Complete') {
             echo "Transaction is already Successful";
@@ -372,9 +366,7 @@ class SslCommerzPaymentController extends Controller
     {
         $tran_id = $request->input('tran_id');
 
-        $order_detials = DB::table('orders')
-            ->where('transaction_id', $tran_id)
-            ->select('transaction_id', 'status', 'currency', 'amount')->first();
+        $order_detials = DB::table('orders')->where('transaction_id', $tran_id)->select('transaction_id', 'status', 'currency', 'amount')->first();
 
         if ($order_detials->status == 'Pending') {
             $update_product = DB::table('orders')

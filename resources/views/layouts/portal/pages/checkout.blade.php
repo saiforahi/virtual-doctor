@@ -42,7 +42,7 @@
                     <div class="card-body">
                         @if(auth()->check() && auth()->user()->hasRole('patient'))
                         <!-- Checkout Form -->
-                        <form id="form" method="POST" action="{{ url('pay') }}">
+                        <form id="form" method="POST" action="{{ route('pay') }}">
                             @csrf
                             <!-- Personal Information -->
                             <input type="hidden" name="schedule_id" value="{{ $schedule_id }}">
@@ -53,15 +53,14 @@
                             <input type="hidden" id="phone" name="phone" value="{{ auth()->user()->phone }}">
                             <input type="hidden" id="address" name="address" value="{{ auth()->user()->address }}">
                             
-                             @foreach ($doctor->doctors as $data)
-                                         <input type="hidden" id="visit_fee" name="visit_fee" value="{{ $data->visit_fee +10 }}">
-                                        @endforeach
+                            @foreach ($doctor->doctors as $data)
+                                <input type="hidden" id="visit_fee" name="visit_fee" value="{{ $data->visit_fee +10 }}">
+                            @endforeach
                           
 
                             <div class="info-widget">
                                 <h4 class="card-title">Symptoms *</h4>
                                 <div class="row clearfix">
-                                   
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
@@ -177,15 +176,9 @@
                             <input type="hidden" name="schedule_id" value="{{ $schedule_id }}">
                             <input type="hidden" id="doc_id" name="doctor_id" value="{{ $id }}">
                             <input type="hidden" id="visit_date" name="visit_date" value="">
-                            
-                            
-                            
-                            
-                             @foreach ($doctor->doctors as $data)
-                                         <input type="hidden" id="visit_fee" name="visit_fee" value="{{ $data->visit_fee +10 }}">
-                                        @endforeach
-                          
-
+                            @foreach ($doctor->doctors as $data)
+                                <input type="hidden" id="visit_fee" name="visit_fee" value="{{ $data->visit_fee +10 }}">
+                            @endforeach
                             <div class="info-widget">
                                 <h4 class="card-title">Personal Information</h4>
                                 <div class="row">

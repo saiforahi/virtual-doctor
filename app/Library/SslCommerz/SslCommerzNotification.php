@@ -17,12 +17,11 @@ class SslCommerzNotification extends AbstractSslCommerz
     public function __construct()
     {
         $this->config = config('sslcommerz');
-
         $this->setStoreId($this->config['apiCredentials']['store_id']);
         $this->setStorePassword($this->config['apiCredentials']['store_password']);
     }
 
-    public function orderValidate($trx_id = '', $amount = 0, $currency = "BDT", $post_data)
+    public function orderValidate($trx_id, $amount, $currency, $post_data)
     {
         if ($post_data == '' && $trx_id == '' && !is_array($post_data)) {
             $this->error = "Please provide valid transaction ID and post request data";
@@ -145,7 +144,7 @@ class SslCommerzNotification extends AbstractSslCommerz
     }
 
     # FUNCTION TO CHECK HASH VALUE
-    protected function SSLCOMMERZ_hash_varify($store_passwd = "", $post_data)
+    protected function SSLCOMMERZ_hash_varify($store_passwd , $post_data)
     {
         if (isset($post_data) && isset($post_data['verify_sign']) && isset($post_data['verify_key'])) {
             # NEW ARRAY DECLARED TO TAKE VALUE OF ALL POST
@@ -193,6 +192,7 @@ class SslCommerzNotification extends AbstractSslCommerz
      */
     public function makePayment(array $requestData, $type = 'checkout', $pattern = 'json')
     {
+        //dd($requestData);
         if (empty($requestData)) {
             return "Please provide a valid information list about transaction with transaction id, amount, success url, fail url, cancel url, store id and pass at least";
         }
