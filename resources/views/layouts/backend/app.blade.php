@@ -84,19 +84,19 @@
 
     <section class="content">
         <div style="font-size: 20px; font-weight: bold;" class="text-center">Welcome  
-            @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+            @if(auth()->check() && auth()->user()->hasRole('admin'))
                 {{ Auth::user()->name }} ! 
             @endif 
     
-            @if(auth()->check() && auth()->user()->hasRole('admin'))
+            @if(auth()->check() && auth()->user()->hasRole('moderator'))
                 {{ Auth::user()->name }} !
             @endif 
             
-            @if(auth()->check() && auth()->user()->hasRole('power-user'))
+            @if(auth()->check() && auth()->user()->hasRole('doctor'))
                 {{ Auth::user()->name }} !
             @endif  
     
-            @if(auth()->check() && auth()->user()->hasRole('user'))
+            @if(auth()->check() && auth()->user()->hasRole('patient'))
                 {{ Auth::user()->name }} !
             @endif 
            
@@ -116,7 +116,7 @@
                 </div>
             @endif   
         
-            @if(auth()->check() && auth()->user()->hasRole('power-user'))
+            @if(auth()->check() && auth()->user()->hasRole('doctor'))
                 <div class="block-header">
                     <h2 class="text-left">DOCTOR'S DASHBOARD</h2>       
                 </div>

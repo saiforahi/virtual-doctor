@@ -62,7 +62,6 @@
             </li>
             @endif
             @endrole
-            @role('patient')
 
             <li class="header">System</li>
             <li class="{{Request::is('settings') ? 'active' : ''}}">
@@ -71,7 +70,7 @@
                     <span>Settings</span>
                 </a>
             </li>
-            @if(auth()->check() && auth()->user()->hasRole('moderator'))
+            @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('slot') ? 'active' : ''}}">
                 <a href="{{route('slot.index')}}">
                     <i class="material-icons">date_range</i>
@@ -79,15 +78,7 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('admin'))
-            <li class="{{Request::is('slot') ? 'active' : ''}}">
-                <a href="{{route('slot.index')}}">
-                    <i class="material-icons">date_range</i>
-                    <span>Create Time Schedule</span>
-                </a>
-            </li>
-            @endif
-            @if(auth()->check() && auth()->user()->hasRole('moderator'))
+            @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('clinic') ? 'active' : ''}}">
                 <a href="{{route('clinic.index')}}">
                     <i class="material-icons">person_add</i>
@@ -95,15 +86,8 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('admin'))
-            <li class="{{Request::is('clinic') ? 'active' : ''}}">
-                <a href="{{route('clinic.index')}}">
-                    <i class="material-icons">person_add</i>
-                    <span>Clinic Info</span>
-                </a>
-            </li>
-            @endif
-            @if(auth()->check() && auth()->user()->hasRole('moderator'))
+            
+            @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('department') ? 'active' : ''}}">
                 <a href="{{route('department.index')}}">
                     <i class="material-icons">person_add</i>
@@ -111,23 +95,7 @@
                 </a>
             </li>
             @endif
-            @if(auth()->check() && auth()->user()->hasRole('admin'))
-            <li class="{{Request::is('department') ? 'active' : ''}}">
-                <a href="{{route('department.index')}}">
-                    <i class="material-icons">person_add</i>
-                    <span>Department Info</span>
-                </a>
-            </li>
-            @endif
-            @if(auth()->check() && auth()->user()->hasRole('moderator'))
-            <li class="{{Request::is('features') ? 'active' : ''}}">
-                <a href="{{route('features.index')}}">
-                    <i class="material-icons">person_add</i>
-                    <span>Add Features</span>
-                </a>
-            </li>
-            @endif
-            @if(auth()->check() && auth()->user()->hasRole('admin'))
+            @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('features') ? 'active' : ''}}">
                 <a href="{{route('features.index')}}">
                     <i class="material-icons">person_add</i>
@@ -148,7 +116,7 @@
                 </form>
             </li>
             @endif
-            @endrole
+            
 
         </ul>
     </div>

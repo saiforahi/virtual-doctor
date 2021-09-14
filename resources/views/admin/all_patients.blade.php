@@ -1,10 +1,10 @@
 
 @extends('layouts.backend.app')
-@if(auth()->check() && auth()->user()->hasRole('super-admin'))
+@if(auth()->check() && auth()->user()->hasRole('admin'))
     @section('title',"ADMIN DASHBOARD")
-@elseif(auth()->check() && auth()->user()->hasRole('admin'))
+@elseif(auth()->check() && auth()->user()->hasRole('moderator'))
     @section('title',"MODERATOR DASHBOARD")
-@elseif(auth()->check() && auth()->user()->hasRole('power-user'))
+@elseif(auth()->check() && auth()->user()->hasRole('doctor'))
     @section('title',"DOCTOR DASHBOARD")
 @else
     @section('title',"PATIENT DASHBOARD")
@@ -21,18 +21,18 @@ table,th{
 @section('content')
 
 <div class="container-fluid">
-    @if(auth()->check() && auth()->user()->hasRole('admin'))
+    @if(auth()->check() && auth()->user()->hasRole('moderator'))
         <div class="block-header">
             <h2 class="text-left">MODERATOR DASHBOARD</h2>       
         </div>
     @endif    
-    @if(auth()->check() && auth()->user()->hasRole('power-user'))
+    @if(auth()->check() && auth()->user()->hasRole('doctor'))
         <div class="block-header">
             <h2 class="text-left">DOCTOR'S DASHBOARD</h2>       
         </div>
     @endif  
 
-    @if(auth()->check() && auth()->user()->hasRole('user'))
+    @if(auth()->check() && auth()->user()->hasRole('patient'))
         <div class="block-header">
             <h2 class="text-left">PATIENT'S DASHBOARD</h2>       
         </div>
@@ -44,7 +44,7 @@ table,th{
 
 
     <!-- Widgets -->
-    @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('power-user') || auth()->user()->hasRole('super-admin'))
+    @if(auth()->user()->hasRole('moderator') || auth()->user()->hasRole('doctor') || auth()->user()->hasRole('admin'))
     <div class="row clearfix">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <a href="{{route('all_patient')}}" style="text-decoration: none;">
@@ -103,7 +103,7 @@ table,th{
     <!-- Widgets End -->
 
 
-    @if(auth()->check() && auth()->user()->hasRole('admin'))
+    @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -178,7 +178,7 @@ table,th{
     </div>
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('power-user'))
+    @if(auth()->check() && auth()->user()->hasRole('doctor'))
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -252,7 +252,7 @@ table,th{
     </div>
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('user'))
+    @if(auth()->check() && auth()->user()->hasRole('patient'))
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
@@ -319,7 +319,7 @@ table,th{
     </div>
     @endif
 
-    @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+    @if(auth()->check() && auth()->user()->hasRole('admin'))
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">

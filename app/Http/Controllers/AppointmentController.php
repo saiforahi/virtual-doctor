@@ -27,20 +27,20 @@ class AppointmentController extends Controller
     public function index()
     {
         $patients = '';
-        if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('moderator')) {
             $patients = Appointment::latest()
                 ->where('isbooked', 1)
                 ->where('isServiced', 1)
                 ->get();
         }
-        if (Auth::user()->hasRole('power-user')) {
+        if (Auth::user()->hasRole('doctor')) {
             $patients = Appointment::latest()
                 ->where('isbooked', 1)
                 ->where('isServiced', 1)
                 ->where('doctor_id', Auth::user()->id)
                 ->get();
         }
-        if (Auth::user()->hasRole('user')) {
+        if (Auth::user()->hasRole('patient')) {
             $patients = Appointment::latest()
                 ->where('isbooked', 1)
                 ->where('isServiced', 1)
@@ -56,12 +56,7 @@ class AppointmentController extends Controller
         $slot = DoctorSchedule::all();
         $user = User::find($id);
 
-        $doctor = User::with('roles')
-            ->whereHas('roles', function ($q) {
-                $q->where('slug', '=', 'power-user');
-            })
-            ->orderBy('created_at', 'desc')
-            ->where('is_deleted', '0')->get();
+        $doctor = User::role('doctor')->orderBy('created_at', 'desc')->where('is_deleted', '0')->get();
 
         // dd($projects);
         return view('admin.create_appointment', compact('user', 'doctor', 'slot', 'id'));
@@ -115,10 +110,7 @@ class AppointmentController extends Controller
         $doctor = User::find($request->doctor_id);
         $patient = User::find(Auth::user()->id);
         $slot = DoctorSchedule::find($request->schedule_id);
-        $moderators = User::with('roles')
-            ->whereHas('roles', function ($q) {
-                $q->where('slug', '=', 'admin');
-            })
+        $moderators = User::role('admin')
             ->where('is_active', 1)
             ->where('is_deleted', 0)
             ->get();
@@ -168,7 +160,7 @@ class AppointmentController extends Controller
             $exiting_doctor = '';
         }
 
-        if (Auth::user()->hasRole('user')) {
+        if (Auth::user()->hasRole('patient')) {
             $is_approved = 0;
         } else {
             $is_approved = 1;
@@ -200,12 +192,9 @@ class AppointmentController extends Controller
                 // $slot = Slot::find($slot_id);
                 $slot = DoctorSchedule::find($slot_id);
 
-                if (Auth::user()->hasRole('user')) {
+                if (Auth::user()->hasRole('patient')) {
 
-                    $moderators = User::with('roles')
-                        ->whereHas('roles', function ($q) {
-                            $q->where('slug', '=', 'admin');
-                        })
+                    $moderators = User::role('admin')
                         ->where('is_active', 1)
                         ->where('is_deleted', 0)
                         ->get();
@@ -235,9 +224,6 @@ class AppointmentController extends Controller
 
                     sendSMSToDoctorPatient($doctor, $patient, $slot, $visit_date);
                 }
-
-
-
                 Toastr::success('Appointment Setup Completed Successfully :)', 'success');
             }
         } else {
@@ -277,10 +263,7 @@ class AppointmentController extends Controller
 
             if (Auth::user()->hasRole('user')) {
 
-                $moderators = User::with('roles')
-                    ->whereHas('roles', function ($q) {
-                        $q->where('slug', '=', 'admin');
-                    })
+                $moderators = User::role('admin')
                     ->where('is_active', 1)
                     ->where('is_deleted', 0)
                     ->get();
@@ -338,7 +321,7 @@ class AppointmentController extends Controller
             $exiting_doctor = '';
         }
 
-        if (Auth::user()->hasRole('user')) {
+        if (Auth::user()->role('patient')) {
             $is_approved = 0;
         } else {
             $is_approved = 1;
@@ -369,12 +352,9 @@ class AppointmentController extends Controller
                 //dd($pre_apt_id);
                 Appointment::where('id', $pre_apt_id)->update(['isScheduled' => 1]);
 
-                if (Auth::user()->hasRole('user')) {
+                if (Auth::user()->hasRole('patient')) {
 
-                    $moderators = User::with('roles')
-                        ->whereHas('roles', function ($q) {
-                            $q->where('slug', '=', 'admin');
-                        })
+                    $moderators = User::role('admin')
                         ->where('is_active', 1)
                         ->where('is_deleted', 0)
                         ->get();
@@ -441,12 +421,9 @@ class AppointmentController extends Controller
             // dd($doctor);
             $slot = DoctorSchedule::find($slot_id);
 
-            if (Auth::user()->hasRole('user')) {
+            if (Auth::user()->hasRole('patient')) {
 
-                $moderators = User::with('roles')
-                    ->whereHas('roles', function ($q) {
-                        $q->where('slug', '=', 'admin');
-                    })
+                $moderators = User::role('admin')
                     ->where('is_active', 1)
                     ->where('is_deleted', 0)
                     ->get();
@@ -509,10 +486,7 @@ class AppointmentController extends Controller
         $slot = DoctorSchedule::latest()->whereNotIn('id', $sloti_id)->get();
 
 
-        $doctor = User::with('roles')
-            ->whereHas('roles', function ($q) {
-                $q->where('slug', '=', 'power-user');
-            })
+        $doctor = User::role('doctor')
             ->orderBy('created_at', 'desc')
             ->where('is_deleted', '0')->get();
         return view('admin.edit_appointment', compact('appointment', 'doctor', 'slot'));

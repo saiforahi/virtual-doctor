@@ -71,7 +71,7 @@
                                 <div class="col-6">
                                     @if(auth()->check() && auth()->user()->hasRole('user'))                                        
                                         <a href="{{ route('book-appoinment', $data->user_id) }}" class="btn book-btn">Book Now</a>
-                                    @elseif(auth()->check() && (auth()->user()->hasRole('power-user') ||  auth()->user()->hasRole('admin') ||  auth()->user()->hasRole('super-admin')))
+                                    @elseif(auth()->check() && (auth()->user()->hasRole('doctor') ||  auth()->user()->hasRole('admin') ||  auth()->user()->hasRole('moderator')))
                                         <a href="#" class="btn book-btn">Book Now</a>
                                     @else
                                         <a href="{{ route('book-appoinment', $data->user_id) }}" class="btn book-btn">Book Now</a>

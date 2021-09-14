@@ -29,7 +29,7 @@ class LiveChatController extends Controller
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
         $result = curl_exec($ch);
-        if (Auth::check() && Auth::user()->hasRole('power-user')) {
+        if (Auth::check() && Auth::user()->hasRole('doctor')) {
             $ispatients = false;
         } else {
             $ispatients = true;
