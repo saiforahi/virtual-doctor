@@ -102,21 +102,21 @@ Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], functio
     
     Route::put('doctor-personalinfo-update','UserController@doctorPersonalInfoUpdate')->name('doctor-personalinfo-update');
 
-	Route::get('settings', 'SettingsController@index')->name('settings');
-	Route::put('profile-update','SettingsController@updateProfile')->name('profile-update');
-	Route::put('degree-update','SettingsController@updateDegree')->name('degree-update');
-	Route::put('doctor-personal-info-update','SettingsController@doctorPersonalInfoUpdate')->name('doctor-personal-info-update');
-    Route::put('password-update','SettingsController@updatePassword')->name('password-update');
-    Route::get('message', 'MessageController@index')->name('message');
-    Route::post('send_message', 'MessageController@message')->name('send_message');
-    Route::get('chat/{id}/{room}/{name}', 'LiveChatController@chat')->name('chat');
-    Route::post('send_session_data', 'LiveChatController@send_session_data')->name('send_session_data');
+	Route::get('settings', [\App\http\Controllers\SettingsController::class,'index'])->name('settings');
+	Route::put('profile-update',[\App\http\Controllers\SettingsController::class,'updateProfile'])->name('profile-update');
+	Route::put('degree-update',[\App\http\Controllers\SettingsController::class,'updateDegree'])->name('degree-update');
+	Route::put('doctor-personal-info-update',[\App\http\Controllers\SettingsController::class,'doctorPersonalInfoUpdate'])->name('doctor-personal-info-update');
+    Route::put('password-update',[\App\http\Controllers\SettingsController::class,'updatePassword'])->name('password-update');
+    Route::get('message',[\App\http\Controllers\MessageController::class,'index'])->name('message');
+    Route::post('send_message', [\App\http\Controllers\MessageController::class,'message'])->name('send_message');
+    Route::get('chat/{id}/{room}/{name}', [\App\http\Controllers\LiveChatController::class,'chat'])->name('chat');
+    Route::post('send_session_data', [\App\http\Controllers\LiveChatController::class,'send_session_data'])->name('send_session_data');
     // Route::post('send_session_data', function (Request $request) {
     //     return response()->json(['status' => $request->all()]);
     //     // dd("session data routs worked.");
     // });
 
-    Route::get('patient_profile/{id}', 'ProfileController@patient_profile')->name('patient_profile');
+    Route::get('patient_profile/{id}', [\App\http\Controllers\ProfileController::class,'patient_profile'])->name('patient_profile');
     
     
     Route::get('/file','FileController@index')->name('viewfile');
@@ -142,10 +142,10 @@ Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], functio
     Route::get('all_patient', 'Admin\DashboardController@all_patient_list')->name('all_patient');
     Route::get('emergency', 'Admin\DashboardController@emergency')->name('emergency');
 
-    Route::get('set_appointment/{id}/doctor_slot/{doc_id}/{visit_date}', 'AppointmentController@doctorAvailbleSlot')->name('doctor_slot');
+    Route::get('set_appointment/{id}/doctor_slot/{doc_id}/{visit_date}', [\App\http\Controllers\AppointmentController::class,'doctorAvailbleSlot'])->name('doctor_slot');
 
-    Route::get('prescription_download/{id}', 'AppointmentController@prescriptionDownload')->name('prescription_download');
-    Route::get('prescription_form/{id}', 'AppointmentController@prescriptionPreview')->name('prescription_form');
+    Route::get('prescription_download/{id}',[\App\http\Controllers\AppointmentController::class,'prescriptionDownload'])->name('prescription_download');
+    Route::get('prescription_form/{id}',[\App\http\Controllers\AppointmentController::class,'prescriptionPreview'])->name('prescription_form');
 
 });
 // SSLCOMMERZ Start

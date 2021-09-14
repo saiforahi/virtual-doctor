@@ -27,7 +27,7 @@ class SettingsController extends Controller
         $doctor_info = '';
         $doctor_schedule = '';
         $department_inf = Department::get();
-        if(Auth::user()->hasRole('power-user'))
+        if(Auth::user()->hasRole('doctor'))
         {
             $id = Auth::user()->id;
             $doctor_info = Doctor::where('user_id',$id)->first();

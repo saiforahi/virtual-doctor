@@ -45,10 +45,7 @@
                                     <i class="material-icons">settings</i> CHANGE PASSWORD
                                 </a>
                             </li>
-                            @if(auth()->check() &&
-                                auth()
-                                ->user()
-                                ->hasRole('power-user'))
+                            @if(auth()->check() && auth()->user()->hasRole('doctor'))
                                 <li role="presentation">
                                     <a href="#degree_with_icon_title" data-toggle="tab">
                                         <i class="material-icons">cast_for_education</i> Academic
@@ -99,7 +96,7 @@
                                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input @if(!(auth() ->user()->hasRole('super-admin') || auth() ->user()->hasRole('admin'))) readonly @endif type="text"
+                                                                <input @if(!(auth() ->user()->hasRole('admin') || auth() ->user()->hasRole('moderator'))) readonly @endif type="text"
                                                                 id="email_address_2" class="form-control" placeholder="Enter your email address" name="email"
                                                                 value="{{ Auth::user()->email }}">
                                                             </div>
@@ -163,7 +160,7 @@
                                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                                         <div class="form-group">
                                                             <div class="form-line">
-                                                                <input @if(!(auth() ->user()->hasRole('super-admin') || auth() ->user()->hasRole('admin'))) readonly @endif type="text"
+                                                                <input @if(!(auth() ->user()->hasRole('admin') || auth() ->user()->hasRole('moderator'))) readonly @endif type="text"
                                                                 class="form-control" name="phone"
                                                                 value="{{ Auth::user()->phone }}">
                                                             </div>
@@ -307,7 +304,7 @@
                                 </form>
                             </div>
 
-                            @if(auth()->check() && auth()->user()->hasRole('power-user'))
+                            @if(auth()->check() && auth()->user()->hasRole('doctor'))
                             <div role="tabpanel" class="tab-pane fade" id="time_with_icon_title">
                             <form method="POST" action="{{ route('doctor-schedule') }}" class="form-horizontal">
                                 @csrf
@@ -369,8 +366,7 @@
                                         <div class="col-lg-3 col-md-3 col-sm-8 col-xs-7">
                                             <div class="form-group">
                                                 <div class="form-line">
-                                                <input type="time" value="{{ $doctorSched->start_time }}" name="start_time[]" placeholder="Start Time" class="form-control" data-toggle="tooltip" data-placement="top" title="Start Time" required oninvalid="this.setCustomValidity('Please select start time')"
-    oninput="this.setCustomValidity('')">
+                                                <input type="time" value="{{ $doctorSched->start_time }}" name="start_time[]" placeholder="Start Time" class="form-control" data-toggle="tooltip" data-placement="top" title="Start Time" required oninvalid="this.setCustomValidity('Please select start time')" oninput="this.setCustomValidity('')">
                                                 </div>
                                             </div>
                                         </div>
@@ -449,7 +445,7 @@
                             @if(auth()->check() &&
                                 auth()
                                 ->user()
-                                ->hasRole('power-user'))
+                                ->hasRole('doctor'))
                                 <div role="tabpanel" class="tab-pane fade" id="degree_with_icon_title">
                                     <form method="POST" action="{{ route('degree-update') }}" class="form-horizontal">
                                         @csrf
