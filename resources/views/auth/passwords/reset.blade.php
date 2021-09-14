@@ -2,17 +2,17 @@
 
 @section('title', 'Login')
 @push('css')
-    <link rel="icon" type="image/png" href="{{ asset('public/assets/frontend/login/images/icons/favicon.ico' )}}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/vendor/bootstrap/css/bootstrap.min.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/fonts/iconic/css/material-design-iconic-font.min.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/vendor/animate/animate.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/vendor/css-hamburgers/hamburgers.min.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/vendor/animsition/css/animsition.min.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/vendor/select2/select2.min.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/vendor/daterangepicker/daterangepicker.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/css/util.css' )}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/assets/frontend/login/css/main.css' )}}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/frontend/login/images/icons/favicon.ico' )}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/vendor/bootstrap/css/bootstrap.min.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/fonts/iconic/css/material-design-iconic-font.min.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/vendor/animate/animate.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/vendor/css-hamburgers/hamburgers.min.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/vendor/animsition/css/animsition.min.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/vendor/select2/select2.min.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/vendor/daterangepicker/daterangepicker.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/css/util.css' )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/frontend/login/css/main.css' )}}">
     <style>
         img {
     display: block;
@@ -26,13 +26,13 @@
 @section('content')
 
 <div class="limiter">
-        <div class="container-login100" style="background-image: url('{{asset('public/assets/frontend/login/images/bg-01.jpg')}}');">
+        <div class="container-login100" style="background-image: url('{{asset('assets/frontend/login/images/bg-01.jpg')}}');">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                 <form method="POST" class="login100-form validate-form" method="POST" action="{{ route('password.request') }}" aria-label="{{ __('Reset Password') }}">
                         @csrf
-                        <input type="hidden" name="token" value="{{ $token }}">
+                        {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
                     <div class="logo" >
-                        <img src="{{asset('public/DMA.gif')}}" class="center">
+                        <img src="{{asset('DMA.gif')}}" class="center">
                     </div>
                     <span class="login100-form-title p-b-49">
                         VirtualDoctor
@@ -74,13 +74,13 @@
 
 @endsection
 @push('js')
-    <script src="{{ asset('public/assets/frontend/login/vendor/jquery/jquery-3.2.1.min.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/animsition/js/animsition.min.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/bootstrap/js/popper.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/bootstrap/js/bootstrap.min.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/select2/select2.min.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/daterangepicker/moment.min.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/daterangepicker/daterangepicker.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/vendor/countdowntime/countdowntime.js' )}}"></script>
-    <script src="{{ asset('public/assets/frontend/login/js/main.js"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/jquery/jquery-3.2.1.min.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/animsition/js/animsition.min.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/bootstrap/js/popper.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/bootstrap/js/bootstrap.min.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/select2/select2.min.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/daterangepicker/moment.min.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/daterangepicker/daterangepicker.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/vendor/countdowntime/countdowntime.js' )}}"></script>
+    <script src="{{ asset('assets/frontend/login/js/main.js"></script>
 @endpush

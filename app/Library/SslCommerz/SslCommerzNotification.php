@@ -21,8 +21,7 @@ class SslCommerzNotification extends AbstractSslCommerz
         $this->setStorePassword($this->config['apiCredentials']['store_password']);
     }
 
-    public function orderValidate($trx_id, $amount, $currency, $post_data)
-    {
+    public function orderValidate($trx_id, $amount, $currency, $post_data){
         if ($post_data == '' && $trx_id == '' && !is_array($post_data)) {
             $this->error = "Please provide valid transaction ID and post request data";
             return $this->error;
@@ -35,13 +34,10 @@ class SslCommerzNotification extends AbstractSslCommerz
         }
     }
 
-
     # VALIDATE SSLCOMMERZ TRANSACTION
-    protected function validate($merchant_trans_id, $merchant_trans_amount, $merchant_trans_currency, $post_data)
-    {
+    protected function validate($merchant_trans_id, $merchant_trans_amount, $merchant_trans_currency, $post_data){
         # MERCHANT SYSTEM INFO
         if ($merchant_trans_id != "" && $merchant_trans_amount != 0) {
-
             # CALL THE FUNCTION TO CHECK THE RESULT
             $post_data['store_id'] = $this->getStoreId();
             $post_data['store_pass'] = $this->getStorePassword();
@@ -53,20 +49,16 @@ class SslCommerzNotification extends AbstractSslCommerz
                 $handle = curl_init();
                 curl_setopt($handle, CURLOPT_URL, $requested_url);
                 curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
-
-                 if ($this->config['connect_from_localhost']) {
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
-                 } else {
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 2);
-                     curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 2);
-                 }
-
+                if ($this->config['connect_from_localhost']) {
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 0);
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
+                } else {
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, 2);
+                    curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 2);
+                }
 
                 $result = curl_exec($handle);
-
                 $code = curl_getinfo($handle, CURLINFO_HTTP_CODE);
-
                 if ($code == 200 && !(curl_errno($handle))) {
 
                     # TO CONVERT AS ARRAY
@@ -211,7 +203,6 @@ class SslCommerzNotification extends AbstractSslCommerz
         $response = $this->callToApi($this->data, $header, $this->config['connect_from_localhost']);
 
         $formattedResponse = $this->formatResponse($response, $type, $pattern); // Here we will define the response pattern
-
         if ($type == 'hosted') {
             if (isset($formattedResponse['GatewayPageURL']) && $formattedResponse['GatewayPageURL'] != '') {
                 $this->redirect($formattedResponse['GatewayPageURL']);

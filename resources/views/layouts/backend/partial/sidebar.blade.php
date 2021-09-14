@@ -37,8 +37,6 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-
-            @role('patient')
             <li class="">
                 <a href="{{route('home')}}" target="_blank">
                     <i class="material-icons">public</i>
@@ -61,8 +59,7 @@
                 </a>
             </li>
             @endif
-            @endrole
-
+            
             <li class="header">System</li>
             <li class="{{Request::is('settings') ? 'active' : ''}}">
                 <a href="{{route('settings')}}">
@@ -105,19 +102,16 @@
             @endif
             @if(!auth()->user()->api_token)
             <li>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <i class="material-icons">input</i>
                     <span>Sign Out</span>
                 </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             </li>
             @endif
             
-
         </ul>
     </div>
     <!-- #Menu -->

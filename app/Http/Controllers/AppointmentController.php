@@ -261,7 +261,7 @@ class AppointmentController extends Controller
             $slot = DoctorSchedule::find($slot_id);
 
 
-            if (Auth::user()->hasRole('user')) {
+            if (Auth::user()->hasRole('patient')) {
 
                 $moderators = User::role('admin')
                     ->where('is_active', 1)
@@ -321,7 +321,7 @@ class AppointmentController extends Controller
             $exiting_doctor = '';
         }
 
-        if (Auth::user()->role('patient')) {
+        if (Auth::user()->hasRole('patient')) {
             $is_approved = 0;
         } else {
             $is_approved = 1;
@@ -470,25 +470,15 @@ class AppointmentController extends Controller
     public function edit(Appointment $appointment)
     {
         $sloti_id = array();
-
-        $patientinfo = Appointment::where('doctor_id', $appointment->doctor_id)
-            ->whereDate('visit_date', $appointment->visit_date)
-            ->get();
+        $patientinfo = Appointment::where('doctor_id', $appointment->doctor_id)->whereDate('visit_date', $appointment->visit_date)->get();
         foreach ($patientinfo as $value) {
             if ($value->schedule_id != $appointment->schedule_id) {
                 $sloti_id[] = $value->schedule_id;
             }
         }
-
-
         // $sloti_id[] = $appointment->slot_id;
-
         $slot = DoctorSchedule::latest()->whereNotIn('id', $sloti_id)->get();
-
-
-        $doctor = User::role('doctor')
-            ->orderBy('created_at', 'desc')
-            ->where('is_deleted', '0')->get();
+        $doctor = User::role('doctor')->orderBy('created_at', 'desc')->where('is_deleted', '0')->get();
         return view('admin.edit_appointment', compact('appointment', 'doctor', 'slot'));
     }
 
@@ -501,7 +491,6 @@ class AppointmentController extends Controller
         $isApproved = $appoint_info->isApproved;
         $slot_id = $appoint_info->slot_id;
 
-        
         $appointment->patient_id = $request->patient_id;
         $appointment->doctor_id = $request->doctor_id;
         $appointment->patient_symptoms = $request->patient_symptoms;
