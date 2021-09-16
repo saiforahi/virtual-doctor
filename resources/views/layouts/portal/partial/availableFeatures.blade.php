@@ -15,7 +15,7 @@
                 <!-- Slider Item -->
                 @foreach ($features as $feature)
                     <div class="feature-item text-center">
-                        <img src="{{ asset('storage/app/public/features/'.$feature->image) }}"
+                        <img src="{{ Storage::disk('public')->url('features/'.$feature->image) }}"
                             class="img-fluid" alt="Feature">
                         <p>{{ $feature->name }}</p>
                     </div>

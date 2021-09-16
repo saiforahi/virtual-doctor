@@ -56,7 +56,7 @@
                                             <td>{{ $features_info->name }}</td>
                                             <td>{{ $features_info->title }}</td>
                                             <td>{!! $features_info->description !!}</td>
-                                            <td><img src="{{ asset('public/storage/features/'.$features_info->image) }}" alt="{{ $features_info->name }}" height="64" width="64"></td>
+                                            <td><img src="{{ Storage::disk('public')->url('features/'.$features_info->image) }}" alt="{{ $features_info->name }}" height="64" width="64"></td>
 	                                    	<td>{{ date('d-m-Y / h:i:s A', strtotime($features_info->created_at)) }}</td>
 	                                    	<td class="text-center">
 	                                    		<a href="{{ route('features.edit',$features_info->id)}}" class="btn btn-info waves-effect">
