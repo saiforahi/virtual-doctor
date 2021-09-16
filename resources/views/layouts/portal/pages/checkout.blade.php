@@ -52,12 +52,11 @@
                             <input type="hidden" id="email" name="email" value="{{ auth()->user()->email }}">
                             <input type="hidden" id="phone" name="phone" value="{{ auth()->user()->phone }}">
                             <input type="hidden" id="address" name="address" value="{{ auth()->user()->address }}">
-                            
-                            @foreach ($doctor->doctors as $data)
-                                <input type="hidden" id="visit_fee" name="visit_fee" value="{{ $data->visit_fee +10 }}">
-                            @endforeach
-                          
-
+                            @if($doctor->visit_fee!=null)
+                            <input type="hidden" id="visit_fee" name="visit_fee" value="{{ $doctor->visit_fee +10 }}">
+                            @else
+                            <input type="hidden" id="visit_fee" name="visit_fee" value="{{ 10 }}">
+                            @endif
                             <div class="info-widget">
                                 <h4 class="card-title">Symptoms *</h4>
                                 <div class="row clearfix">
@@ -337,9 +336,7 @@
                                 </ul>
                                 <ul class="booking-fee">
                                     <li>Consulting Fee
-                                        @foreach ($doctor->doctors as $data)
-                                        <span>{{ $data->visit_fee }} Tk</span>
-                                        @endforeach
+                                        <span>{{ $doctor->visit_fee }} Tk</span>
                                     </li>
                                     <li>Booking Fee <span>10 Tk</span></li>
                                     {{-- <li>Video Call <span>$50</span></li>
@@ -350,9 +347,7 @@
                                         <li>
                                             <span>Total</span>
                                             <span class="total-cost">
-                                                @foreach ($doctor->doctors as $data)
-                                                {{ $data->visit_fee + 10 }} Tk
-                                                @endforeach
+                                                {{ $doctor->visit_fee + 10 }} Tk
                                             </span>
                                         </li>
                                     </ul>

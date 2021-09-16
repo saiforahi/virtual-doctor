@@ -135,7 +135,7 @@ class UserController extends Controller
                 'password' =>bcrypt($password),                
             ]);
             $to = $patient->email;
-            $patient->roles()->attach($request->role_id);
+            $patient->assignRole(Role::find($request->role_id));
             Mail::send([],[], function($message) use ($html,$to){
                 $message->from('contact@virtualdr.com.bd', 'Virtual Doctor');
                 $message->to($to);
@@ -144,10 +144,7 @@ class UserController extends Controller
                     'text/html' );              
     
             });
-            $moderator = User::with('roles')
-            ->whereHas('roles', function ($q) {
-                $q->where('slug', '=', 'admin');
-            })
+            $moderator = User::role('moderator')
             ->where('is_deleted', 0)
             ->where('is_active', 1)
             ->get();
@@ -171,7 +168,6 @@ class UserController extends Controller
                     $message->subject('New Patient Registration!');
                     $message->setBody($mail_body,
                         'text/html' );
-        
                 });
             }
 

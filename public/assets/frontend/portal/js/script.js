@@ -217,7 +217,6 @@ Version      : 1.3
 				  settings: {
 					slidesToShow: 1
 				  }
-
 			}]
 		});
 	}

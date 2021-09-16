@@ -143,7 +143,6 @@
                         </select>
                         <span class="focus-input100" data-symbol="🗸"></span>
                     </div>
-
                     <div class="wrap-input100 validate-input m-b-23" data-validate="User Type is reauired">
                         <span class="label-input100">{{ __('Role') }}</span>
                         <select name="role_id" class="input100" placeholder="Select your " value="{{ old('role_id') }}" required>

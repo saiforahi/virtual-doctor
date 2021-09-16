@@ -91,7 +91,7 @@ Route::get('booking-success', [\App\Http\Controllers\HomeController::class,'book
 
 
 Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], function() { 
-    Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('ensure_profile_is_updated');
     Route::resource('users', UserController::class);    
     Route::resource('appointments', \App\Http\Controllers\AppointmentController::class);
     Route::get('reschedule_appointment/{id}',[\App\Http\Controllers\AppointmentController::class,'reschedule_appointment'])->name('reschedule_appointment');

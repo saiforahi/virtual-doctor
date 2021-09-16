@@ -1003,7 +1003,7 @@
     @endif
 
 
-    @if(auth()->check() && auth()->user()->hasRole('admin'))
+    @if(auth()->check() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('moderator')))
     <!-- Approval Requests -->
     @if($total_approval>0)
     <div class="row clearfix">

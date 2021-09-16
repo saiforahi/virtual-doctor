@@ -11,6 +11,10 @@ use Spatie\Permission\Models\Role;
 function getRoles(){
     return Role::all();
 }
+
+function get_departments(){
+    return Department::all();
+}
 function getPatientAppointmentStatus($id)
 {
 

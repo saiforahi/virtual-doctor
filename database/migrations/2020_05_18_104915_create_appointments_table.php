@@ -27,6 +27,8 @@ class CreateAppointmentsTable extends Migration
             $table->string('prescribe_medicines')->nullable();
             $table->string('spent_hour')->nullable();
             $table->string('investigation')->nullable();
+            $table->string('instructions')->nullable();
+            $table->string('vital_signs')->nullable();
             $table->string('cc')->nullable();
             $table->string('diagonosis')->nullable();
             $table -> integer('isbooked')->default(0);

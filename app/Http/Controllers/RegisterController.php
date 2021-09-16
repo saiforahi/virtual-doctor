@@ -224,12 +224,10 @@ class RegisterController extends Controller
             ]);
 
             $to = $patient->email;
-            $patient->roles()->attach($request->role_id);
-
             Patient::create([
                 'user_id' => $patient->id,
             ]);
-
+            $patient->assignRole(Role::find($request->role_id));
             // send mail to patient for account creation
             if ($to != "") {
                 Mail::send([], [], function ($message) use ($html, $to) {
@@ -285,9 +283,8 @@ class RegisterController extends Controller
                 'gender' => $request->gender,
                 'password' => bcrypt($request->password),
             ]);
-
+            $data->assignRole(Role::find($request->role_id));
             $to = $data->email;
-            $data->roles()->attach($request->role_id);
             Doctor::create([
                 'user_id' => $data->id,
             ]);
@@ -316,7 +313,7 @@ class RegisterController extends Controller
                 'password' => bcrypt($request->password),
             ]);
             $to = $data->email;
-            $data->roles()->attach($request->role_id);
+            $data->assignRole(Role::find($request->role_id));
             Mail::send([], [], function ($message) use ($html, $to) {
                 $message->from('contact@virtualdr.com.bd', 'Virtual Doctor');
                 $message->to($to);
@@ -328,7 +325,7 @@ class RegisterController extends Controller
             });
         }
         // dd($data);
-        Toastr::success('Registration Completed Successfully :)', 'success');
+        Toastr::success('Registration Completed Successfully', 'success');
         return redirect('/login');
     }
 }

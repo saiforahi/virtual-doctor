@@ -23,7 +23,7 @@ class HomeController extends Controller
         // $clinic = Clinic::all();
         $features = Features::latest()->get();
         $departments = Department::latest()->get();
-        $doctor = Doctor::with('users')->whereHas('users', function ($q) {$q->where('is_deleted', '=', '0');})->get();
+        $doctor = Doctor::with('users')->whereHas('users', function ($q) {$q->where('is_active','1')->where('is_deleted', '=', '0');})->where('department_id','!=',null)->get();
         //dd($doctor);
         return view('welcome', compact('doctor', 'features', 'departments'));
     }
@@ -31,6 +31,7 @@ class HomeController extends Controller
 
     public function searchDoctor(Request $request)
     {
+        //kdd($request->all());
         $departments = Department::latest()->get();
         // Search Doctor        
         $keyword = $request->input('kw');
@@ -153,7 +154,8 @@ class HomeController extends Controller
 
     public function checkout($id, $schedule_id)
     {
-        $doctor = User::findOrFail($id);
+        $doctor = Doctor::with('users')->where('user_id',$id)->first();
+        //dd($doctor);
         $schedule = DoctorSchedule::findOrFail($schedule_id);
         return view('layouts.portal.pages.checkout', compact('id', 'schedule_id', 'doctor', 'schedule'));
     }

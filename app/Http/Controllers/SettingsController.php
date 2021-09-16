@@ -46,7 +46,11 @@ class SettingsController extends Controller
         $is_image = $request->is_image;
 
         $user = User::findOrFail(Auth::id());
-        
+        if(Auth::user()->hasRole('doctor') && $request->department != null){
+            Doctor::where('user_id',Auth::user()->id)->update([
+                'department_id' => $request->department
+            ]);
+        }
         if($is_image === 'on')
         {
         	$image = $request->file('image');

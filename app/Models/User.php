@@ -54,9 +54,9 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Message');
     }
 
-    public function doctors()
+    public function doctor()
     {
-        return $this->hasMany(Doctor::class, 'user_id');
+        return $this->hasOne(Doctor::class, 'user_id');
     }
    
 }

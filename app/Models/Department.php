@@ -3,13 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Department extends Model
+class Department extends Model implements HasMedia
 {
-    protected $guarded = [];
+    use InteractsWithMedia;
 
-     public function specialityname()
-     {
-     return $this->belongsTo(Doctor::class, 'department_id');
-     }
+    protected $guarded = [];
+    protected $fillable = ['name','image'];
+
+    public function specialityname()
+    {
+        return $this->belongsTo(Doctor::class, 'department_id');
+    }
 }

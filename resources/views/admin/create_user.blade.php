@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if(auth()->check() && auth()->user()->hasRole('super-admin'))
+                                    @if(auth()->check() && auth()->user()->hasRole('admin'))
                                     {{-- <div class="row clearfix">
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                             <label for="password">Password </label>

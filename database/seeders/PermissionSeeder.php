@@ -54,6 +54,7 @@ class PermissionSeeder extends Seeder
             'age' => '30',
             'is_active' => 1,
             'password' => Hash::make('123456'),
+            'email_verified_at'=> date("Y-m-d H:i:s A"),
             'gender' => 'Male',
         ]);
         $user->assignRole($role1);
@@ -71,6 +72,7 @@ class PermissionSeeder extends Seeder
             'age' => '30',
             'is_active' => 1,
             'password' => Hash::make('123456'),
+            'email_verified_at'=> date("Y-m-d H:i:s A"),
             'gender' => 'Male',
         ]);
         \App\Models\Moderator::create([
@@ -85,6 +87,7 @@ class PermissionSeeder extends Seeder
             'image'=>'Mabia Mishu-2021-02-24-60362015aa588.jpg',
             'is_active' => 1,
             'password' => Hash::make('123456'),
+            'email_verified_at'=> date("Y-m-d H:i:s A"),
             'gender' => 'Male',
         ]);
         \App\Models\Doctor::create([
@@ -99,6 +102,7 @@ class PermissionSeeder extends Seeder
             'age' => '30',
             'is_active' => 1,
             'password' => Hash::make('123456'),
+            'email_verified_at'=> date("Y-m-d H:i:s A"),
             'gender' => 'Male',
         ]);
         \App\Models\Patient::create([
