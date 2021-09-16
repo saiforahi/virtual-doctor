@@ -50,14 +50,11 @@
 								{{ doctor_degree_details($doctor->id) }}								
 							</p>
 							<p class="doc-department"><img src="{{ asset('assets/frontend/portal/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">
-								@foreach ($doctor->doctors as $data)
-									@if($data->department_id!="")
-										{{ getDeptNameById($data->department_id) }}									
-									@else
-										N/A
-									@endif
-									
-								@endforeach
+								@if($doctor->department_id!="")
+									{{ getDeptNameById($doctor->department_id) }}								
+								@else
+									N/A
+								@endif
 							</p>
 							<div class="rating">
 								<i class="fas fa-star filled"></i>
@@ -105,9 +102,7 @@
 								<li><i class="far fa-comment"></i> 17 Feedback</li>
 								{{-- <li><i class="fas fa-map-marker-alt"></i> Newyork, USA</li> --}}
 								<li><i class="far fa-money-bill-alt"></i> 
-									@foreach ($doctor->doctors as $data)
-									{{ $data->visit_fee }} Tk / per hour
-								@endforeach
+									{{ $doctor->visit_fee }} Tk / per hour
 								</li>
 							</ul>
 						</div>

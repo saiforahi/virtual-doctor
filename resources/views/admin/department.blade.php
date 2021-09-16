@@ -52,7 +52,7 @@
                                     	<tr>
 	                                    	<td>{{ $key + 1 }}</td>
                                             <td>{{ $department_info->name }}</td>
-                                            <td><img src="{{ asset('public/storage/departments/'.$department_info->image) }}" alt="{{ $department_info->name }}" height="64" width="64"></td>
+                                            <td><img src="{{Storage::disk('public')->url('/departments/'.$department_info->image)}}" alt="{{ $department_info->name }}" height="64" width="64"></td>
 	                                    	<td>{{ date('d-m-Y / h:i:s A', strtotime($department_info->created_at)) }}</td>
 	                                    	<td class="text-center">
 	                                    		<a href="{{ route('department.edit',$department_info->id)}}" class="btn btn-info waves-effect">

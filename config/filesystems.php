@@ -27,7 +27,34 @@ return [
     | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
     */
-
+    'ftp' => [
+        'driver' => 'ftp',
+        'host' => 'ftp.example.com',
+        'username' => 'your-username',
+        'password' => 'your-password',
+    
+        // Optional FTP Settings...
+        // 'port' => 21,
+        // 'root' => '',
+        // 'passive' => true,
+        // 'ssl' => true,
+        // 'timeout' => 30,
+    ],
+    'sftp' => [
+        'driver' => 'sftp',
+        'host' => 'example.com',
+        'username' => 'your-username',
+        'password' => 'your-password',
+    
+        // Settings for SSH key based authentication...
+        'privateKey' => '/path/to/privateKey',
+        'password' => 'encryption-password',
+    
+        // Optional SFTP Settings...
+        // 'port' => 22,
+        // 'root' => '',
+        // 'timeout' => 30,
+    ],
     'disks' => [
 
         'local' => [
@@ -67,7 +94,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => storage_path('app/public')
     ],
 
 ];

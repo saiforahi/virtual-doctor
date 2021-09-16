@@ -45,15 +45,16 @@ class DepartmentController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-
+            'image'=> 'sometimes|nullable|file'
         ]);
-
-        $image =$request->file('image');
-        $slug  =str_slug($request->name);
+        $image;
+        if($request->has('image')){
+            $image =$request->file('image');
+        }
         if(isset($image)){
             //make unique name for image
             $currentDate = Carbon::now()->toDateString();
-            $imageName   = $slug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $imageName = $currentDate.'-'.$request->name.'.'.$image->getClientOriginalExtension();
             //check departments dir is exits
             if(!Storage::disk('public')->exists('departments')){
                 Storage::disk('public')->makeDirectory('departments');
@@ -69,11 +70,8 @@ class DepartmentController extends Controller
         $departments->name = $request->name;
         $departments->image = $imageName;
         $departments->save();
-        //dd($departments);
 
-        
-
-        Toastr::success('Departments Inserted Successfully :)','success');
+        Toastr::success('Department added Successfully :)','success');
         return redirect('department');
     }
 
@@ -165,7 +163,6 @@ class DepartmentController extends Controller
         {
             Storage::disk('public')->delete('departments/'.$departments->image);
         }
-
         $departments = $departments->delete();
         Toastr::success('Departments deleted successfully','Success');
         return redirect()->back();
