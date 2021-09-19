@@ -135,13 +135,17 @@ class HomeController extends Controller
 
     public function doctorProfile($id)
     {
-        $doctor = User::findOrFail($id);
+        // $doctor = User::findOrFail($id);
+        $doctor = Doctor::join('departments', 'doctors.department_id', '=', 'departments.id')
+                    ->join('users', 'doctors.user_id', '=', 'users.id')
+                    ->where('users.id', $id)
+                    ->first();
         $drSchedule = DoctorSchedule::where('doctor_id', $id)
             ->orderBy('start_time')
             ->get()
             ->groupBy('day_name');
 
-        // dd($drSchedule);
+        // dd($doctor);
 
         return view('layouts.portal.pages.doctor_profile', compact('id', 'doctor', 'drSchedule'));
     }
