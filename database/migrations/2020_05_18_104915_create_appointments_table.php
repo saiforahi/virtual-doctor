@@ -21,6 +21,8 @@ class CreateAppointmentsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('schedule_id');
             $table->foreign('schedule_id')->references('id')->on('doctor_schedules')->onDelete('cascade');
+            $table->unsignedBigInteger('device_id')->unique()->nullable();
+            $table->foreign('device_id')->references('id')->on('devices')->onDelete('cascade');
             $table->string('patient_symptoms')->nullable();
             $table->string('patient_type');
             $table->string('room_id');

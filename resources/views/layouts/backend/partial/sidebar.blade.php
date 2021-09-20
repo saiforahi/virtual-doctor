@@ -93,6 +93,14 @@
             </li>
             @endif
             @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
+            <li class="{{Request::is('device') ? 'active' : ''}}">
+                <a href="{{route('device.index')}}">
+                    <i class="material-icons">person_add</i>
+                    <span>Devices Info</span>
+                </a>
+            </li>
+            @endif
+            @if(auth()->check() && auth()->user()->hasRole('moderator') || auth()->check() && auth()->user()->hasRole('admin'))
             <li class="{{Request::is('features') ? 'active' : ''}}">
                 <a href="{{route('features.index')}}">
                     <i class="material-icons">person_add</i>

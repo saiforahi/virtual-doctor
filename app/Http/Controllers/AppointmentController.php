@@ -11,6 +11,7 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Str;
+use App\Models\Device;
 use DateTime;
 use PDF;
 use Mail;
@@ -478,8 +479,9 @@ class AppointmentController extends Controller
         }
         // $sloti_id[] = $appointment->slot_id;
         $slot = DoctorSchedule::latest()->whereNotIn('id', $sloti_id)->get();
+        $devices = Device::all();
         $doctor = User::role('doctor')->orderBy('created_at', 'desc')->where('is_deleted', '0')->get();
-        return view('admin.edit_appointment', compact('appointment', 'doctor', 'slot'));
+        return view('admin.edit_appointment', compact('appointment', 'doctor', 'slot','devices'));
     }
 
 
@@ -493,6 +495,7 @@ class AppointmentController extends Controller
 
         $appointment->patient_id = $request->patient_id;
         $appointment->doctor_id = $request->doctor_id;
+        $appointment->device_id = $request->device_id;
         $appointment->patient_symptoms = $request->patient_symptoms;
         $appointment->visit_date = $request->visit_date;
         $appointment->schedule_id = $request->slot_id;
