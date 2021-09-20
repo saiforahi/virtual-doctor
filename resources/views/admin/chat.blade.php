@@ -370,7 +370,7 @@
             </a>
         </h4>
         <img class="img-round"
-            src="@if(is_null($appointment->users->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$appointment->users->image) }} @endif"
+            src="@if(is_null($appointment->users->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$appointment->users->image) }} @endif"
             width="48" height="48" alt="User" />
         <p>
             <b>Name: </b>{{$appointment->users->name}}
@@ -500,7 +500,7 @@
     <div id="doctorHistoryPrescription">
         <h4><i class="fas fa-user-md"></i> Doctor Profile</h4>
         <img class="img-round"
-            src="@if(is_null($appointment->users->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$appointment->users->image) }} @endif"
+            src="@if(is_null($appointment->users->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$appointment->users->image) }} @endif"
             width="48" height="48" alt="User" />
         <p>
             <b>Name: </b>{{$doctorInfo->name}}
@@ -574,12 +574,12 @@
 
 </script>
 <!-- webRTC script -->
-<script src="{{ asset('public/js/RTCMultiConnection.min.js')}}"></script>
-<script src="{{ asset('public/js/socket.io.js')}}"></script>
-<script src="{{ asset('public/js/RecordRTC.js')}}"></script>
-<script src="{{ asset('public/js/webrtc-handler.js')}}"></script>
-<script src="{{ asset('public/js/canvas-designer-widget.js')}}"></script>
-<script src="{{ asset('public/js/custom_rtc.js')}}"></script>
+<script src="{{ asset('js/RTCMultiConnection.min.js')}}"></script>
+<script src="{{ asset('js/socket.io.js')}}"></script>
+<script src="{{ asset('js/RecordRTC.js')}}"></script>
+<script src="{{ asset('js/webrtc-handler.js')}}"></script>
+<script src="{{ asset('js/canvas-designer-widget.js')}}"></script>
+<script src="{{ asset('js/custom_rtc.js')}}"></script>
 <!-- fontawesome kit -->
 <script src="https://kit.fontawesome.com/a516280526.js" crossorigin="anonymous"></script>
 @endpush

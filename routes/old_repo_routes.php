@@ -94,6 +94,7 @@ Route::group(['middleware' =>  ['role:admin|moderator|doctor|patient']], functio
     Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('ensure_profile_is_updated');
     Route::resource('users', UserController::class);    
     Route::resource('appointments', \App\Http\Controllers\AppointmentController::class);
+    Route::resource('device', \App\Http\Controllers\api\DeviceController::class);
     Route::get('reschedule_appointment/{id}',[\App\Http\Controllers\AppointmentController::class,'reschedule_appointment'])->name('reschedule_appointment');
     Route::post('reschedule_store',[\App\Http\Controllers\AppointmentController::class,'rescheduleStore'])->name('reschedule_store');
     // if logged in portal

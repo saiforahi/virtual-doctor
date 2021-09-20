@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\IotController;
+use App\Http\Controllers\api\DeviceController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/iot-data', [IotController::class,'store']);
+Route::get('/get_vital_signs_data/{appointment_id}', [IotController::class,'get']);
+Route::get('/device/allocated_appointment/{id}', [DeviceController::class,'allocated_appointment']);

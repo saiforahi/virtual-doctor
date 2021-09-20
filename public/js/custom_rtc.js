@@ -120,7 +120,7 @@ connection.sdpConstraints.mandatory = {
 };
 
 // required canvas page here
-designer.widgetHtmlURL = baseUrl[0] + '/public/js/widget.html';
+designer.widgetHtmlURL = baseUrl[0] + '/js/widget.html';
 designer.widgetJsURL = "widget.min.js";
 
 // default selected tool in whiteboard
@@ -756,6 +756,24 @@ function sendMessage(e) {
         }
     }
 }
+
+setInterval(()=>{
+    console.log(appointmentId)
+    $.ajax({
+        method: "GET",
+        dataType: 'JSON',
+        url: baseUrl[0] + "/api/get_vital_signs_data/"+appointmentId,
+
+        success: function (result) {
+            let data = JSON.parse(result.data)
+            console.log(data)
+            $("#txt_temp").val(data.temp)
+            $("#txt_pulse").val(data.pulse)
+            $("#txt_bp").val(data.bp_sys)
+            $("#txt_oxy").val(data.ox)
+        },
+    });
+},5000)
 
 function saveVitalData() {
     var spentHour = $("#duration").text();
