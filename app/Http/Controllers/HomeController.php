@@ -159,7 +159,7 @@ class HomeController extends Controller
     public function checkout($id, $schedule_id)
     {
         $doctor = Doctor::with('users')->where('user_id',$id)->first();
-        //dd($doctor);
+        //dd($doctor->id);
         $schedule = DoctorSchedule::findOrFail($schedule_id);
         return view('layouts.portal.pages.checkout', compact('id', 'schedule_id', 'doctor', 'schedule'));
     }

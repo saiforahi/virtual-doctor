@@ -803,8 +803,7 @@
 
         @endif
 
-        @if (auth()->check() &&
-        auth()->user()->hasRole('patient'))
+        @if (auth()->check() && auth()->user()->hasRole('patient'))
 
             <!-- PATIENT Tab -->
             <div class="row">
@@ -1039,9 +1038,7 @@
     @endif
 
 
-    @if (auth()->check() &&
-        (auth()->user()->hasRole('admin') ||
-            auth()->user()->hasRole('moderator')))
+    @if (auth()->check() && auth()->user()->hasRole('admin'))
         <!-- Approval Requests -->
         @if ($total_approval > 0)
             <div class="row clearfix">

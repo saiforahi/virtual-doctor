@@ -63,8 +63,7 @@
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <textarea style="border:1px solid gray" rows="3" name="patient_symptoms"
-                                                    class="form-control"></textarea>
+                                                <textarea style="border:1px solid gray" rows="3" name="patient_symptoms" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>

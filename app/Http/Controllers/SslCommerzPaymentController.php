@@ -35,7 +35,7 @@ class SslCommerzPaymentController extends Controller
         # Here you have to receive all the order data to initate the payment.
         # Let's say, your oder transaction informations are saving in a table called "orders"
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
-
+        //dd($request->all());
         $post_data = array();
         $post_data['total_amount'] = $request->visit_fee; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
@@ -96,6 +96,7 @@ class SslCommerzPaymentController extends Controller
             'doctor_id' => $request->doctor_id,
             'room_id' => $uniqid,
             'patient_type' => 'New',
+            'patient_symptoms' => $request->patient_symptoms,
             'vital_signs' => $vital_signs,
             'visit_date' => date("Y-m-d", strtotime($request->visit_date)),
             'schedule_id' => $request->schedule_id,

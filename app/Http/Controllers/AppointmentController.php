@@ -477,9 +477,9 @@ class AppointmentController extends Controller
                 $sloti_id[] = $value->schedule_id;
             }
         }
-        // $sloti_id[] = $appointment->slot_id;
+        
         $slot = DoctorSchedule::latest()->whereNotIn('id', $sloti_id)->get();
-        $devices = Device::all();
+        $devices = Device::join('appointments','appointments.device_id','devices.id')->get();
         $doctor = User::role('doctor')->orderBy('created_at', 'desc')->where('is_deleted', '0')->get();
         return view('admin.edit_appointment', compact('appointment', 'doctor', 'slot','devices'));
     }

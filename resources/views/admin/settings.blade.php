@@ -140,7 +140,7 @@
                                                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                                                 <div class="fileinput-new thumbnail img-holder">
                                                                     <img id="blah"
-                                                                        src=" @if(is_null(Auth::user()->image)) {{ url('storage/app/public/default.png') }} @else {{ url('storage/app/public/profile/' . Auth::user()->image) }} @endif "
+                                                                        src=" @if(is_null(Auth::user()->image)) {{ url('storage/default.png') }} @else {{ url('storage/profile/' . Auth::user()->image) }} @endif "
                                                                         alt="profile image">
 
                                                                     <input type="checkbox" class="form-check-input" checked

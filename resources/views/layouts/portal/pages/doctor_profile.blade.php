@@ -42,14 +42,14 @@
 				<div class="doctor-widget">
 					<div class="doc-info-left">
 						<div class="doctor-img">
-							<img src=" @if( is_null($doctor->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$doctor->image) }} @endif " class="img-fluid" alt="User Image">
+							<img src=" @if( is_null($doctor->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$doctor->image) }} @endif " class="img-fluid" alt="User Image">
 						</div>
 						<div class="doc-info-cont">
 							<h4 class="doc-name">{{ $doctor->name }}</h4>
 							<p class="doc-speciality">								
 								{{ doctor_degree_details($doctor->id) }}								
 							</p>
-							<p class="doc-department"><img src="{{ asset('assets/frontend/portal/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">
+							<p class="doc-department"><img src="{{ asset('public/assets/frontend/portal/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">
 								@if($doctor->department_id!="")
 									{{ getDeptNameById($doctor->department_id) }}								
 								@else
@@ -68,23 +68,23 @@
 								<p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ $doctor->address }}</p>
 								<ul class="clinic-gallery">
 									<li>
-										<a href="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery">
-											<img src="{{ asset('assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature">
+										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" data-fancybox="gallery">
+											<img src="{{ asset('public/assets/frontend/portal/img/features/feature-01.jpg')}}" alt="Feature">
 										</a>
 									</li>
 									<li>
-										<a href="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery">
-											<img  src="{{ asset('assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
+										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" data-fancybox="gallery">
+											<img  src="{{ asset('public/assets/frontend/portal/img/features/feature-02.jpg')}}" alt="Feature Image">
 										</a>
 									</li>
 									<li>
-										<a href="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery">
-											<img src="{{ asset('assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature">
+										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" data-fancybox="gallery">
+											<img src="{{ asset('public/assets/frontend/portal/img/features/feature-03.jpg')}}" alt="Feature">
 										</a>
 									</li>
 									<li>
-										<a href="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery">
-											<img src="{{ asset('assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature">
+										<a href="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" data-fancybox="gallery">
+											<img src="{{ asset('public/assets/frontend/portal/img/features/feature-04.jpg')}}" alt="Feature">
 										</a>
 									</li>
 								</ul>
@@ -777,8 +777,8 @@
 @endsection
 @push('js')
 <!-- Fancybox JS -->
-<script src="{{ asset('assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
+<script src="{{ asset('public/assets/frontend/portal/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('assets/frontend/portal/js/script.js')}}"></script>
+<script src="{{ asset('public/assets/frontend/portal/js/script.js')}}"></script>
 @endpush

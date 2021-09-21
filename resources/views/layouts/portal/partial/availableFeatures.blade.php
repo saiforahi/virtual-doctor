@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-md-4 features-img">
-            <img src="{{ asset('assets/frontend/portal/img/features/feature.png') }}" class="img-fluid"
+            <img src="{{ asset('public/assets/frontend/portal/img/features/feature.png') }}" class="img-fluid"
                 alt="Feature">
         </div>
 

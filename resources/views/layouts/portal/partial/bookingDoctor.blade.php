@@ -27,7 +27,7 @@
                             {{--
                             {{ asset('public/storage/profile/' . $post->user->image) }} --}}
                             <a href="{{ route('doctor-profile',$data->user_id) }}">
-                                <img class="img-fluid" alt="User Image" src=" @if( is_null($data->users->image)) {{ url('storage/profile/no_profile.png') }} @else {{ url('storage/profile/'.$data->users->image) }} @endif ">
+                                <img class="img-fluid" alt="User Image" src=" @if( is_null($data->users->image)) {{ url('storage/app/public/profile/no_profile.png') }} @else {{ url('storage/app/public/profile/'.$data->users->image) }} @endif ">
                             </a>
                             <a href="javascript:void(0)" class="fav-btn">
                                 <i class="far fa-bookmark"></i>

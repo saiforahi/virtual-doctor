@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     protected $guarded = [];
+    protected $with=[];
+    //protected $fillable=[];
     public function users()
     {
         return $this->belongsTo(User::class, 'patient_id');
@@ -19,5 +21,9 @@ class Appointment extends Model
     public function slots()
     {
         return $this->belongsTo(DoctorSchedule::class, 'schedule_id');
+    }
+
+    public function device(){
+        return $this->hasOne(Device::class,'device_id');
     }
 }

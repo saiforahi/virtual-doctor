@@ -279,6 +279,7 @@ class UserController extends Controller
     {
         $user_info = User::find($id);
         $doctor_info = Doctor::where('user_id',$id)->first();
+        //dd($id);
         $doctor_schedule = DoctorSchedule::where('doctor_id',$id)->get();
         $department_inf = Department::get();
         return view('admin.edit_user',compact('user_info','doctor_info','doctor_schedule','department_inf'));
