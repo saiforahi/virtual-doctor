@@ -587,8 +587,7 @@
             <!-- #END# MODERATOR Tab -->
         @endif
 
-        @if (auth()->check() &&
-        auth()->user()->hasRole('doctor'))
+        @if (auth()->check() && auth()->user()->hasRole('doctor'))
 
             <!-- DOCTOR Tab -->
             <div class="row">

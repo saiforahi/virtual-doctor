@@ -15,7 +15,7 @@ use App\Models\Device;
 use DateTime;
 use PDF;
 use Mail;
-
+use DB;
 class AppointmentController extends Controller
 {
 
@@ -411,6 +411,7 @@ class AppointmentController extends Controller
                 'doctor_id' => $request->doctor_id,
                 'room_id' => $uniqid,
                 'patient_type' => $request->patient_type,
+                'device_id' => $request->device_id,
                 'patient_symptoms' => $request->patient_symptoms,
                 'visit_date' => $request->follow_up_visit_date,
                 'schedule_id' => $slot_id,
@@ -479,7 +480,9 @@ class AppointmentController extends Controller
         }
         
         $slot = DoctorSchedule::latest()->whereNotIn('id', $sloti_id)->get();
-        $devices = Device::join('appointments','appointments.device_id','devices.id')->get();
+        $devices = Device::all();
+        //$devices = Device::join('appointments','appointments.device_id','devices.id')->select('devices.id','devices.name')->get();
+
         $doctor = User::role('doctor')->orderBy('created_at', 'desc')->where('is_deleted', '0')->get();
         return view('admin.edit_appointment', compact('appointment', 'doctor', 'slot','devices'));
     }
@@ -487,7 +490,13 @@ class AppointmentController extends Controller
 
     public function update(Request $request, Appointment $appointment)
     {
+        //dd($request->all());
         date_default_timezone_set("Asia/Dhaka");
+        if(Appointment::where('device_id',$request->device_id)->exists()){
+            Appointment::where('device_id',$request->device_id)->update([
+                'device_id'=>null
+            ]);
+        }
         $visit_date = $request->visit_date;
         $appoint_info = Appointment::find($appointment->id);
         $isApproved = $appoint_info->isApproved;
@@ -577,21 +586,24 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::find($id);
         $vital_signs = $appointment->vital_signs;
-
-        $vitalsigns = explode(',', $vital_signs);
-        $vital_weight = 0;
-        foreach ($vitalsigns as $vluevital) {
-            $weight = substr($vluevital, 0, 6);
-
-            if ($weight === 'Weight') {
-                $vital_weight = $vluevital;
+        $signs;
+        $vital_signs_line='';
+        foreach ($vital_signs as $key => $value) {
+            if($key == 'temp'){
+                $signs['Temparature'] = $value.' F';
             }
+            else if($key == 'ox'){
+                $signs['Oxygen Rate'] = $value.' %';
+            }
+            else if($key == 'bp_sys'){
+                $signs['Blood Pressure'] = $value.' %';
+            }
+            else if($key == 'hr'){
+                $signs['Pulse'] = $value;
+            }
+            $vital_signs_line=$vital_signs_line.$key.'='.$value;
         }
-
-        $patient_weight = substr($vital_weight, 7);
-
-        // return view('admin.prescription_form', compact('appointment','patient_weight'));
-        $pdf = PDF::loadView('admin.prescription_form', compact('appointment', 'patient_weight'));
+        $pdf = PDF::loadView('admin.prescription_form', compact('appointment', 'vital_signs_line','vital_signs','signs'));
 
         return $pdf->download('prescription.pdf');
     }

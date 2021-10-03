@@ -164,7 +164,7 @@
                                             </div>
                                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                                 <div class="form-group">
-                                                    <select class="form-control" name="device" id="is_approved" required>
+                                                    <select class="form-control" name="device_id" id="is_approved" required>
                                                         @foreach ($devices as $device)
                                                             <option value={{$device->id}}>{{$device->name}}</option>   
                                                         @endforeach

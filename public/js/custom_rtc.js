@@ -767,9 +767,13 @@ setInterval(()=>{
         success: function (result) {
             let data = JSON.parse(result.data)
             console.log(data)
+            $("#temp").val(data.temp)
+            $("#pulse").val(data.hr)
+            $("#bp").val(data.bp_sys+'/'+bp_dia)
+            $("#oxy").val(data.ox)
             $("#txt_temp").val(data.temp)
-            $("#txt_pulse").val(data.pulse)
-            $("#txt_bp").val(data.bp_sys)
+            $("#txt_pulse").val(data.hr)
+            $("#txt_bp").val(data.bp_sys+'/'+data.bp_dia)
             $("#txt_oxy").val(data.ox)
         },
     });

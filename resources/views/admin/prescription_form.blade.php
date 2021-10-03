@@ -203,7 +203,7 @@
 			<p><strong>Patient Name : </strong><u>{{ $appointment->users->name }} </u></p>
 			<p><strong>Address : </strong><u>{{ $appointment->users->address }}</u></p>
 			<p><span><strong>Age: </strong><u>{{ $appointment->users->age }} </u></span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span><strong>Sex: </strong><u>{{ $appointment->users->gender }}</u></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span><strong>Weight: </strong><u>{{ $patient_weight }} </u></span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span><strong>Sex: </strong><u>{{ $appointment->users->gender }}</u></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<span style="float:right;"><strong> Date: <span><u> {{ date('j F Y', strtotime($appointment->visit_date)) }}</u></span></strong></span></p>
 		</div>
 		
@@ -214,7 +214,9 @@
 				<p> @php $patient_symptoms = explode(",",$appointment->patient_symptoms);@endphp  @foreach($patient_symptoms as $sinfo)
 					<p>{{ $sinfo }}</p>
 				@endforeach </p> 
-
+                @foreach($signs as $key=> $value)
+                <strong>{{$key}}</strong> = {{$value}}
+				@endforeach
 				@if($appointment->cc)
 					<strong><u>Investigation</u></strong>
 					<p> @php $investigation = explode(",",$appointment->investigation);@endphp  @foreach($investigation as $iinfo)

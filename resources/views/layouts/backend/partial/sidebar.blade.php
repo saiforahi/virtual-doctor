@@ -2,7 +2,7 @@
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
-            <img src="@if(is_null(Auth::user()->image)) {{ url('storage/profile/no_profile.png') }} @else{{ url('storage/profile/'.Auth::user()->image)}}@endif" width="48" height="48" alt="User" />
+            <img src="@if(is_null(Auth::user()->image)) {{ Storage::disk('public')->url('profile/no_profile.png') }} @else{{ Storage::disk('public')->url('profile/'.Auth::user()->image)}}@endif" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}

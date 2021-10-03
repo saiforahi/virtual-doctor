@@ -11,7 +11,7 @@
                 @foreach ($departments as $d)
                 <div id={{'department'.$d->id}} class="speicality-item text-center">
                     <div class="speicality-img">
-                        <img src="{{asset('storage/app/public/departments/'.$d->image)}}" class="img-fluid" alt={{ $d->name }}>
+                        <img src="{{Storage::disk('public')->url('departments/'.$d->image)}}" class="img-fluid" alt={{ $d->name }}>
                         <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                     </div>
                     <p>{{ $d->name }}</p>
